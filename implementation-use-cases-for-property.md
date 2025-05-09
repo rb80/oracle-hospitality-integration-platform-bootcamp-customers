@@ -184,6 +184,8 @@ Posting a routing instruction to an existing reservation where Room charges go t
 This is required to updated Window 1 payment method to the payment method which belongs to guest.
 Take any [test Credit Card numbers](https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.htm) and insert into the payload within the tag `pan`.
 
+Note that if you do not have OPI cloud active the Oracle team will demonstrate this integration live.
+
 Kindly note that this environment is linked to a PSP simulator and therefore every PAN number conversion will respond with different Token numbers for same PAN number.
 
 ## 16-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 OPTIONAL
