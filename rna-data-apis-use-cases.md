@@ -223,7 +223,7 @@ Scripts automatically obtain a new oAuth token when the token expires.
 
 ## 4 Fetch Profiles
 
-This fetches the profiles you've modified during the OHIP Lab and stores them locally.
+This fetches profiles and stores them locally.
 
 The query uses the Profile-Individuals Subject Area API.
 
@@ -249,7 +249,7 @@ Using the client:
 
 ## 5 Fetch Reservations
 
-Here you will be fetching the reservations you've created during the OHIP Lab and store them locally.
+Here you will be fetching reservations and storing them locally.
 
 For this, you'll use the Booking-Reservation Subject Area API.
 
@@ -275,7 +275,7 @@ Using the client:
 
 ## 6 Fetch Transaction Details
 
-Here you will be fetching the transactions you've created during the OHIP Lab and store them locally.
+Here you will be fetching transactions and storing them locally.
 
 For this, you'll use the Financial-TransactionDetails Subject Area API.
 
