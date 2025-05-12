@@ -17,15 +17,15 @@
 
 ## Day 2 OHIP II
 
-|Time       |Activity                                  |
-|-----------|------------------------------------------|
-|08:30-09:00|Coffee                                    |
-|09:00-10:00|Async APIs (presentation + lab)           |
-|10:00-11:00|R&A Data API (presentation + lab)         |
-|11:00-11:10|Coffee                                    |
-|11:10-12:30|Business Events (presentation + lab)      |
-|12:30-13:30|Lunch                                     |
-|13:30-15:00|Advanced Integration Patterns             |
-|15:00-15:30|Implementation Best Practices             |
-|15:30-15:40|Coffee                                    |
-|15:40-16:10|OHIP Roadmap                              |
+|Time       |Activity                                      |
+|-----------|----------------------------------------------|
+|08:30-09:00|Coffee                                        |
+|09:00-10:00|Async APIs (presentation + lab)               |
+|10:00-11:00|R&A Data API (presentation + lab)             |
+|11:00-11:10|Coffee                                        |
+|11:10-12:30|Streaming Events (presentation + lab)         |
+|12:30-13:30|Lunch                                         |
+|13:30-14:30|Distribution APIs overview                    |
+|14:30-15:30|Implementation Best Practices                 |
+|15:30-15:40|Coffee                                        |
+|15:40-16:10|Advanced Integration Patterns + OHIP Roadmap  |
