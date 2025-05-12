@@ -14,7 +14,6 @@
 
 * Develop skills to optimize property data usage for efficiency and accuracy.
 
-
 * [1 Get Token](#1-get-token)
 * [2 Create Guest Profile](#2-create-guest-profile)
 * [3 Create Company Profile Optional](#3-create-company-profile-optional)
@@ -89,7 +88,7 @@ This API is to create an Account Receivable Number (AR Number) to the Company Pr
 
 1. Account Receivable account types (AR Types) enable you to categorize AR accounts. The account type selected in each AR Account is used for filtering in both the application and also on reports, such as when generating an AR aging report subtotaled by account type. Account types also determine the stationery templates to use when generating statements and reminder letters for each AR account. Fetch AR types which is required to create Company AR account and set environment variable `CompanyArAccountType`
 2. Create Company AR Account. Create your own AR account number in the format `AAAA<nnn>` where `<nnn>` are three digits.  
-3. Copy `accountNo` from 4a and insert into query parameter. Use getProfile API to check all of the above values are responded correctly. Copy `accountNo` into `CompanyAccountNo` and `accountId` into `CompanyAccountId`. 
+3. Copy `accountNo` from 4a and insert into query parameter. Use getProfile API to check all of the above values are responded correctly. Copy `accountNo` into `CompanyAccountNo` and `accountId` into `CompanyAccountId`.
 
 ## 5-Create Travel Agent Profile OPTIONAL
 
@@ -115,7 +114,7 @@ After successful fetch, make sure following are inserted into Environment variab
 1. Room Type
 2. RatePlanCode
 
-For testing purposes please pick Room type `DEL` and RatePlanCode `BARRO` as they are relevant later for updating a reservation. Set environment variables `RoomType` and `RatePlanCode` respectively by selecting the appropriate text, right clicking and choosing `Set:Bootcamp Reseller` then choose `RoomType` or `RatePlanCode` as appropriate.
+For testing purposes please pick Room type `DEL` and RatePlanCode `BARRO` as they are relevant later for updating a reservation. Set environment variables `RoomType` and `RatePlanCode` respectively by selecting the appropriate text, right clicking and choosing `Set:Bootcamp` then choose `RoomType` or `RatePlanCode` as appropriate.
 
 The variables `Currentdate` and `Currentdateplus1` variable are created from getToken API test scripts.
 
@@ -184,16 +183,31 @@ Posting a routing instruction to an existing reservation where Room charges go t
 This is required to updated Window 1 payment method to the payment method which belongs to guest.
 Take any [test Credit Card numbers](https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.htm) and insert into the payload within the tag `pan`.
 
-Note that if you do not have OPI cloud active the Oracle team will demonstrate this integration live.
+*Note* that if you do not have OPI cloud active please use step 16a but note that this configuration will not be supported in the future.
 
 Kindly note that this environment is linked to a PSP simulator and therefore every PAN number conversion will respond with different Token numbers for same PAN number.
 
 ## 16-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 OPTIONAL
 
+*Note* Use this only if OPI is active (see step 15).
+
 Update an existing Payment Method using this API. Make sure you update the request body:
 
 1. Set `cardNumber` to be the value in the `token` property you received from the response body to `openPaymentTokenExchange`
 2. Set `cardNumberMasked` to be the value in the `pan` property you received from the response body to `openPaymentTokenExchange`
+3. Set `expirationDate` to be some time in the future
+4. Set `citId`.  citId is an id which is usually sent by PSP into OPERA through OPI. This is not visible anywhere in OPERA Cloud UI. It is saved in the OPERA database only. For testing you can use any value as there is no validation.
+
+And any other value which you changed.
+
+## 16a-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 with OPI inactive OPTIONAL
+
+*Note* Use this only if OPI is not active (see step 15).  This configuration will not be supported in the future.
+
+Update an existing Payment Method using this API. Make sure you update the request body:
+
+1. Set `cardNumber` to be the plaintext card number
+2. Set `cardNumberMasked` to be the plaintext card number but with X replacing all except the last 4 digits.  For example `XXXX XXXX XXXX 1234`
 3. Set `expirationDate` to be some time in the future
 4. Set `citId`.  citId is an id which is usually sent by PSP into OPERA through OPI. This is not visible anywhere in OPERA Cloud UI. It is saved in the OPERA database only. For testing you can use any value as there is no validation.
 
