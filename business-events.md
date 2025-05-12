@@ -17,6 +17,7 @@
       - [2.4.2 Clone repo and install software](#242-clone-repo-and-install-software)
       - [2.4.3 Configure the client](#243-configure-the-client)
       - [2.4.4 Run the client](#244-run-the-client)
+    - [2.5 Cleaning up lab configuration](#25-cleaning-up-lab-configuration)
 
 ## 0. Objective
 
@@ -39,9 +40,8 @@ Polling means sending repeated requests to ask "are there any events for my exte
 
 1. Create a chain-level user in OPERA Cloud
 2. Assign the following tasks to the user.  See [Assigning Tasks to a Role](https://docs.oracle.com/search/?q=Assigning+Tasks+to+a+Role&category=industries&product=en%2Findustries%2Fhospitality):
-
-* Under Interfaces Admin - Property Interfaces - External Systems: _New/Edit External Systems_
-* Under Interfaces Admin - Property Interfaces - Business Events: _New/Edit Business Events_
+   1. Under Interfaces Admin - Property Interfaces - External Systems: _New/Edit External Systems_
+   2. Under Interfaces Admin - Property Interfaces - Business Events: _New/Edit Business Events_
 
 #### 1.1.2. Creating an external system
 
@@ -85,7 +85,7 @@ Streaming means opening a WebSocket connection, then Oracle Hospitality pushing 
 
 1. Sign in to Postman.com
 2. Fork [this collection](https://www.postman.com/hospitalityapis/workspace/oracle-hospitality-apis/collection/64e77a3c0d2905380767b08e) to your own user
-3. Verify the values in the Postman environment match: The application subscribed to the events in [Configure Streaming in the Developer Portal](#1-configure-streaming-in-the-developer-portal); the gateway URL, clientId, and clientSecret of the environment given by the Oracle team
+3. Verify the values in the Postman environment match: The application subscribed to the events in [2.1. Configure Streaming in the Developer Portal](#21-configure-streaming-in-the-developer-portal); the gateway URL, clientId, and clientSecret of the environment given by the Oracle team
 4. Obtain an oAuth token (see the "Basic Setup" workshop)
 5. Edit the `subscribe` message to have the `chainCode` given to you by the Oracle team
 6. Open the "Saved Messages" on the right of the request
@@ -110,7 +110,7 @@ Streaming means opening a WebSocket connection, then Oracle Hospitality pushing 
 3. Obtain an oAuth token (see the "Basic Setup" workshop) using the clientId, clientSecret, and gateway URL of the environment given by the Oracle team
 4. Paste the value of the `access_token` to the `Auth Token` field
 5. Enter the Gateway URL in the `URL` field, but change the scheme from `https://` to `wss://`  (see the "Basic Setup" workshop for obtaining the Gateway URL)
-6. Enter the application key in the `Application Key` field  (see the "Basic Setup" workshop for obtaining the application key).  Use the application subscribed to consume events from the environment supplied by the Oracle team - see [Configure Streaming in the Developer Portal](#1-configure-streaming-in-the-developer-portal)
+6. Enter the application key in the `Application Key` field  (see the "Basic Setup" workshop for obtaining the application key).  Use the application subscribed to consume events from the environment supplied by the Oracle team - see [2.1. Configure Streaming in the Developer Portal](#21-configure-streaming-in-the-developer-portal)
 7. Click Start
 8. In the request payload ensure the `chainCode` reflects the tenant code given to you by the Oracle team
 
@@ -155,3 +155,18 @@ Streaming means opening a WebSocket connection, then Oracle Hospitality pushing 
 1. In the `1. Property REST APIs By Module` collection expand the `OPERA Cloud REST APIs By Module` folder, then the `Profiles (CRM)` folder, then the `Post Profile (create)` folder, open the `Post Profile` request and click Send a few times.
 2. In the `1. Property REST APIs By Module` collection expand the `OPERA Cloud REST APIs By Module` folder, then the `Profiles (CRM)` folder, then the `Put Profile (update)` folder, open the `Put Profile` request and click Send a few times
 3. Observe the Business Events flowing through.
+
+### 2.5 Cleaning up lab configuration
+
+To avoid clutter and confusion, remove configuration created solely for this lab.
+
+1. In the developer portal's Applications tab, click on My Applications
+2. Find the application used for this lab and click View Details
+3. Go to the Events > Subscribed tab
+4. Unsubscribe from each event
+5. Go to the Overview tab on the application
+6. Click Delete
+7. If your environment is on OCIM (Client Credentials):
+   1. In the developer portal's Environments tab click View Details on the environment used for this demo
+   2. Next to the client created for this lab click the three dots in the Actions column
+   3. Choose Delete
