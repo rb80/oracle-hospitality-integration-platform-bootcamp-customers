@@ -1,6 +1,6 @@
-# Oracle Hospitality Integration Platform Bootcamp
+# Oracle Hospitality Integration Platform Bootcamp for Customers
 
-Materials for a bootcamp on the [Oracle Hospitality Integration Platform](https://www.oracle.com/industries/hospitality/integration-platform/):
+Materials for a bootcamp for customers on the [Oracle Hospitality Integration Platform](https://www.oracle.com/industries/hospitality/integration-platform/):
 
 1. [Agenda](bootcamp-agenda.md)
 2. [Prerequisites](prerequisites.md)

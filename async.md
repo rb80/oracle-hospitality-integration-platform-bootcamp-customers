@@ -191,7 +191,7 @@ A new asynchronous operation getFinancialPostingsNetVat will be introduced in th
 
 ## 9. Async Lab
 
-1. Ensure the environment selected is "Bootcamp Reseller".
+1. Ensure the environment selected is "Bootcamp".
 2. Set the `ExtSystemCode` parameter to the external system code provided to you by the Oracle team.
 
 ### Send the first request
@@ -200,7 +200,7 @@ A new asynchronous operation getFinancialPostingsNetVat will be introduced in th
 2. Click the request `start Reservations Daily Summary Process`
 3. Click the `Body` tab and change the dates in the payload to the below
 4. Send the request
-5. Open the console, click the request, and scroll down to the Response Headers.  Highlight the last part of the URL in the `Location` header and choose `Set:Bootcamp Reseller` then choose `SummaryId`
+5. Open the console, click the request, and scroll down to the Response Headers.  Highlight the last part of the URL in the `Location` header and choose `Set:Bootcamp` then choose `SummaryId`
 
 ``` json
 {
@@ -222,7 +222,7 @@ A new asynchronous operation getFinancialPostingsNetVat will be introduced in th
 4. Look in the Console to see the response headers
 5. If the `status` header is `COMPLETED` then:
 
-a. Highlight the last part of the URL in the `Location` response header and choose `Set:Bootcamp Reseller` then choose `SummaryId`
+a. Highlight the last part of the URL in the `Location` response header and choose `Set:Bootcamp` then choose `SummaryId`
 b. Proceed to send the third request
 
 ### Send the third request
