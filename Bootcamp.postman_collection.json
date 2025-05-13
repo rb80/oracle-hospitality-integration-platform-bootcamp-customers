@@ -1,116 +1,215 @@
 {
 	"info": {
-		"_postman_id": "11062da9-f745-41c3-9f82-893f91ae958a",
+		"_postman_id": "6c3ae9b9-1db3-4620-8353-026c7cfb178f",
 		"name": "Bootcamp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "809897"
+		"_exporter_id": "15729853",
+		"_collection_link": "https://hospitalityapis.postman.co/workspace/Team-Workspace~f6e529a2-8cdb-43d1-8526-1aa5d61f48e4/collection/15729853-6c3ae9b9-1db3-4620-8353-026c7cfb178f?action=share&source=collection_link&creator=15729853"
 	},
 	"item": [
 		{
 			"name": "Implementation Use Cases",
 			"item": [
 				{
-					"name": "01. Get oAuth Token",
-					"event": [
+					"name": "01. OAuth Token",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
-									"postman.setEnvironmentVariable(\"Token\", jsonData.access_token);\r",
-									"//Set Currentdate and Currentdateplus1 variables\r",
-									"var moment = require('moment');\r",
-									"pm.environment.set('Currentdate', moment().format((\"YYYY-MM-DD\")))\r",
-									"pm.environment.set('Currentdateplus1', moment().add(1, 'days').format((\"YYYY-MM-DD\")))\r",
-									"pm.environment.set('Currentdateplus2', moment().add(2, 'days').format((\"YYYY-MM-DD\")))\r",
-									"pm.environment.set('Currentdateplus3', moment().add(3, 'days').format((\"YYYY-MM-DD\")))\r",
-									"pm.environment.set('Currentdateplus4', moment().add(4, 'days').format((\"YYYY-MM-DD\")))\r",
-									"pm.environment.set('Currentdateplus5', moment().add(5, 'days').format((\"YYYY-MM-DD\")))"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
+							"name": "Get OAuth Token for Resource Owner environments",
+							"event": [
 								{
-									"key": "password",
-									"value": "{{CLIENT_SECRET}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{CLIENT_ID}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"value": true,
-									"type": "boolean"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"Token\", jsonData.access_token);\r",
+											"//Set Currentdate and Currentdateplus1 variables\r",
+											"var moment = require('moment');\r",
+											"pm.environment.set('Currentdate', moment().format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus1', moment().add(1, 'days').format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus2', moment().add(2, 'days').format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus3', moment().add(3, 'days').format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus4', moment().add(4, 'days').format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus5', moment().add(5, 'days').format((\"YYYY-MM-DD\")))\r",
+											"var uuid = require('uuid');\r",
+											"var myUUID = uuid.v4();\r",
+											"pm.environment.set(\"MyGUID\", myUUID);\r",
+											"pm.environment.set(\"HashedAppKey\", CryptoJS.SHA256(pm.environment.get(\"AppKey\")).toString());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
 								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							},
-							{
-								"key": "x-app-key",
-								"value": "{{AppKey}}",
-								"type": "text"
-							},
-							{
-								"key": "Enterpriseid",
-								"value": "{{EnterpriseId}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "grant_type",
-									"value": "client_credentials",
-									"type": "text"
-								},
-								{
-									"key": "scope",
-									"value": "urn:opc:hgbu:ws:__myscopes__",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{HostName}}/oauth/v1/tokens",
-							"host": [
-								"{{HostName}}"
 							],
-							"path": [
-								"oauth",
-								"v1",
-								"tokens"
-							]
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{CLIENT_SECRET}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{CLIENT_ID}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "{{Username}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{Password}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HostName}}/oauth/v1/tokens",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"oauth",
+										"v1",
+										"tokens"
+									]
+								},
+								"description": "Use this API to request an oAuth token when the environment is a Resource Owner environment. You can see which oAuth flow an environment supports by looking at the Environment page in the OHIP Developer Portal. For more information see (Authenticating to Oracle Hospitality Property APIs)\\[[https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/c_oracle_hospitality_property_apis.htm#AuthenticatingToOracleHospitalityPr-1BD54F80](https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/c_oracle_hospitality_property_apis.htm#AuthenticatingToOracleHospitalityPr-1BD54F80)\\] under the heading \"Resource Owner-Based Authentication\".\n\nTo call this API you will need:\n\n1. To know the environment is a Resource Owner environment - see above\n2. A valid ClientId and ClientSecret\n3. An integration user and its password that has been approved by the environment owner\n4. A valid application key\n    \n\nBecause of this, oAuth tokens may only be used when calling the given environment.\n\noAuth tokens expire after 60 minutes. We recommend obtaining a new oAuth token every 50 minutes, but not more frequently."
+							},
+							"response": []
+						},
+						{
+							"name": "Get OAuth Token for Client Credentials environments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"Token\", jsonData.access_token);\r",
+											"//Set Currentdate and Currentdateplus1 variables\r",
+											"var moment = require('moment');\r",
+											"pm.environment.set('Currentdate', moment().format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus1', moment().add(1, 'days').format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus2', moment().add(2, 'days').format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus3', moment().add(3, 'days').format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus4', moment().add(4, 'days').format((\"YYYY-MM-DD\")))\r",
+											"pm.environment.set('Currentdateplus5', moment().add(5, 'days').format((\"YYYY-MM-DD\")))\r",
+											"var uuid = require('uuid');\r",
+											"var myUUID = uuid.v4();\r",
+											"pm.environment.set(\"MyGUID\", myUUID);\r",
+											"pm.environment.set(\"HashedAppKey\", CryptoJS.SHA256(pm.environment.get(\"AppKey\")).toString());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{CLIENT_SECRET}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{CLIENT_ID}}",
+											"type": "string"
+										},
+										{
+											"key": "undefined",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "enterpriseId",
+										"value": "{{EnterpriseId}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "urn:opc:hgbu:ws:__myscopes__",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HostName}}/oauth/v1/tokens",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"oauth",
+										"v1",
+										"tokens"
+									]
+								},
+								"description": "Use this API to request an oAuth token when the environment is a Client Credentials environment. You can see which oAuth flow an environment supports by looking at the Environment page in the OHIP Developer Portal. For more information see (Authenticating to Oracle Hospitality Property APIs)\\[[https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/c_oracle_hospitality_property_apis.htm#AuthenticatingToOracleHospitalityPr-1BD54F80](https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/c_oracle_hospitality_property_apis.htm#AuthenticatingToOracleHospitalityPr-1BD54F80)\\] under the heading \"Client Credentials-Based Authentication\".\n\nTo call this API you will need:\n\n1. To know the environment is a Client Credentials environment - see above\n2. A valid ClientId and ClientSecret\n3. A valid EnterpriseId\n4. A valid application key\n    \n\nBecause of this, oAuth tokens may only be used when calling the given environment.\n\noAuth tokens expire after 60 minutes. We recommend obtaining a new oAuth token every 50 minutes, but not more frequently."
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "02.Profile - Create Guest Profile",
@@ -142,7 +241,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -226,7 +324,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -301,7 +398,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -422,7 +518,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -515,7 +610,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -663,7 +757,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -738,7 +831,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -859,7 +951,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -952,7 +1043,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1106,7 +1196,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1215,7 +1304,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1299,7 +1387,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1382,7 +1469,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1458,7 +1544,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1542,7 +1627,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1624,7 +1708,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1696,7 +1779,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1796,7 +1878,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1868,7 +1949,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -1954,7 +2034,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2019,7 +2098,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2081,7 +2159,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2149,7 +2226,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2212,7 +2288,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2276,7 +2351,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2344,7 +2418,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2409,7 +2482,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2471,7 +2543,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2539,7 +2610,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2602,7 +2672,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2666,7 +2735,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2734,7 +2802,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2799,7 +2866,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2861,7 +2927,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2929,7 +2994,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -2996,7 +3060,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -3054,7 +3117,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -3368,7 +3430,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -3460,7 +3521,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -3520,7 +3580,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -3580,7 +3639,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -3640,7 +3698,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -3880,7 +3937,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -3945,7 +4001,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4006,7 +4061,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4087,7 +4141,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4154,7 +4207,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4217,7 +4269,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4553,7 +4604,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4680,7 +4730,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4740,7 +4789,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4803,7 +4851,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4912,7 +4959,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -4971,7 +5017,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -5030,7 +5075,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -5089,7 +5133,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -5148,7 +5191,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -5214,7 +5256,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"name": "Content-Type",
 								"type": "text"
 							},
 							{
@@ -5461,7 +5502,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Please reference [the lab](https://github.com/rb80/oracle-hospitality-integration-platform-bootcamp-customers/blob/main/implementation-use-cases-for-property.md)) for using this Postman collection."
 		}
 	]
 }
