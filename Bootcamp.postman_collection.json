@@ -11,7 +11,7 @@
 			"name": "Implementation Use Cases",
 			"item": [
 				{
-					"name": "01. OAuth Token",
+					"name": "01a. OAuth Token",
 					"item": [
 						{
 							"name": "Get OAuth Token for Resource Owner environments",
@@ -22,14 +22,6 @@
 										"exec": [
 											"var jsonData = JSON.parse(responseBody);\r",
 											"postman.setEnvironmentVariable(\"Token\", jsonData.access_token);\r",
-											"//Set Currentdate and Currentdateplus1 variables\r",
-											"var moment = require('moment');\r",
-											"pm.environment.set('Currentdate', moment().format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus1', moment().add(1, 'days').format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus2', moment().add(2, 'days').format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus3', moment().add(3, 'days').format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus4', moment().add(4, 'days').format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus5', moment().add(5, 'days').format((\"YYYY-MM-DD\")))\r",
 											"var uuid = require('uuid');\r",
 											"var myUUID = uuid.v4();\r",
 											"pm.environment.set(\"MyGUID\", myUUID);\r",
@@ -123,14 +115,6 @@
 										"exec": [
 											"var jsonData = JSON.parse(responseBody);\r",
 											"postman.setEnvironmentVariable(\"Token\", jsonData.access_token);\r",
-											"//Set Currentdate and Currentdateplus1 variables\r",
-											"var moment = require('moment');\r",
-											"pm.environment.set('Currentdate', moment().format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus1', moment().add(1, 'days').format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus2', moment().add(2, 'days').format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus3', moment().add(3, 'days').format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus4', moment().add(4, 'days').format((\"YYYY-MM-DD\")))\r",
-											"pm.environment.set('Currentdateplus5', moment().add(5, 'days').format((\"YYYY-MM-DD\")))\r",
 											"var uuid = require('uuid');\r",
 											"var myUUID = uuid.v4();\r",
 											"pm.environment.set(\"MyGUID\", myUUID);\r",
@@ -212,6 +196,121 @@
 					]
 				},
 				{
+					"name": "01b. get Business Date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Set Currentdate and Currentdateplus1 variables\r",
+									"var resp = pm.response.json();\r",
+									"var moment = require('moment');\r",
+									"\r",
+									"var respBusinessDate = resp.hotels[0].businessDate;\r",
+									"\r",
+									"// Parse the businessDate string into a moment object\r",
+									"var momentBusinessDate = moment(respBusinessDate);\r",
+									"\r",
+									"// Format the date as YYYY-MM-DD\r",
+									"var formattedBusinessDate = momentBusinessDate.format(\"YYYY-MM-DD\");\r",
+									"\r",
+									"// Set the 'Currentdate' environment variable in Postman\r",
+									"pm.environment.set('Currentdate', formattedBusinessDate);\r",
+									"pm.environment.set('Currentdateplus1', momentBusinessDate.add(1, 'days').format((\"YYYY-MM-DD\")))\r",
+									"pm.environment.set('Currentdateplus2', momentBusinessDate.add(2, 'days').format((\"YYYY-MM-DD\")))\r",
+									"pm.environment.set('Currentdateplus3', momentBusinessDate.add(3, 'days').format((\"YYYY-MM-DD\")))\r",
+									"pm.environment.set('Currentdateplus4', momentBusinessDate.add(4, 'days').format((\"YYYY-MM-DD\")))\r",
+									"pm.environment.set('Currentdateplus5', momentBusinessDate.add(5, 'days').format((\"YYYY-MM-DD\")))\r",
+									"\r",
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Hotel ID</th>\r",
+									"        <th>Business Date</th>\r",
+									"        <th>Current Date</th>\r",
+									"        <th>Current Date Plus 1</th>\r",
+									"        <th>Current Date Plus 2</th>\r",
+									"        <th>Current Date Plus 3</th>\r",
+									"        <th>Current Date Plus 4</th>\r",
+									"        <th>Current Date Plus 5</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response.hotels}}\r",
+									"        <tr>\r",
+									"            <td>{{hotelId}}</td>\r",
+									"            <td>{{businessDate}}</td>\r",
+									"            <td>{{../environment.Currentdate}}</td>\r",
+									"            <td>{{../environment.Currentdateplus1}}</td>\r",
+									"            <td>{{../environment.Currentdateplus2}}</td>\r",
+									"            <td>{{../environment.Currentdateplus3}}</td>\r",
+									"            <td>{{../environment.Currentdateplus4}}</td>\r",
+									"            <td>{{../environment.Currentdateplus5}}</td>\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return {response: pm.response.json(), environment: pm.environment.toObject()}\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-app-key",
+								"value": "{{AppKey}}",
+								"type": "text"
+							},
+							{
+								"key": "x-hotelId",
+								"value": "{{HotelId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{HostName}}/bof/v1/hotels/{{HotelId}}/businessDate",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"bof",
+								"v1",
+								"hotels",
+								"{{HotelId}}",
+								"businessDate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "02.Profile - Create Guest Profile",
 					"event": [
 						{
@@ -221,7 +320,26 @@
 									"var data = pm.response.headers.get(\"Location\").split(\"/\").pop();\r",
 									"postman.setEnvironmentVariable(\"ProfileId\", data);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var data = pm.request.body;\r",
+									"var body = data[data.mode];\r",
+									"var jsonData = JSON.parse(body);\r",
+									"\r",
+									"var emailAddress = jsonData.guestDetails.emails.emailInfo[0].email.emailAddress;\r",
+									"\r",
+									"// Set the emailAddress in the environment variable\r",
+									"pm.environment.set(\"EmailAddress\", emailAddress);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -262,7 +380,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"guestDetails\": {\n        \"customer\": {\n            \"personName\": [\n                {\n                    \"givenName\": \"{{$randomFirstName}}\",\n                    \"surname\": \"{{$randomLastName}}\",\n                    \"nameTitle\": \"Mr\",\n                    \"nameType\": \"PRIMARY\",\n                    \"language\": \"E\"\n                }\n            ],\n            \"language\": \"E\"\n        },\n        \"profileType\": \"GUEST\",\n        \"statusCode\": \"ACTIVE\",\n        \"registeredProperty\": \"{{HotelId}}\",\n        \"markForHistory\": true\n    }\n}",
+							"raw": "{\n    \"guestDetails\": {\n        \"customer\": {\n            \"personName\": [\n                {\n                    \"givenName\": \"{{$randomFirstName}}\",\n                    \"surname\": \"{{$randomLastName}}\",\n                    \"nameTitle\": \"Mr\",\n                    \"nameType\": \"PRIMARY\",\n                    \"language\": \"E\"\n                }\n            ],\n            \"language\": \"E\"\n        },\n        \"emails\": {\n            \"emailInfo\": [\n                {\n                    \"email\": {\n                        \"emailAddress\": \"example@example.com\",\n                        \"type\": \"EMAIL\",\n                        \"typeDescription\": \"Email Address\",\n                        \"primaryInd\": true,\n                        \"orderSequence\": 1\n                    }\n                }\n            ]\n        },\n        \"profileType\": \"GUEST\",\n        \"statusCode\": \"ACTIVE\",\n        \"registeredProperty\": \"{{HotelId}}\",\n        \"markForHistory\": true\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3132,7 +3250,66 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"reservationId\": {\n        \"type\": \"Reservation\",\n        \"id\": \"{{ReservationId}}\"\n    },\n    \"reservationPaymentMethods\": [\n        {\n            \"paymentCard\": {\n                \"cardType\": \"Va\",\n                \"cardNumber\": \"4012188119853892\",\n                \"cardNumberMasked\": \"XXXXXXXXXXXX1881\",\n                \"expirationDate\": \"2026-12-31\",\n                \"expirationDateExpired\": false,\n                \"cardHolderName\": \"Charlie\",\n                \"cardOrToken\": \"Token\",\n                \"citId\": \"654321ABC1234581\"\n            },\n            \"emailFolioInfo\": {\n                \"email\": {\n                    \"emailAddress\": \"name@example.com\"\n                },\n                \"emailFolio\": true\n            },\n            \"authorizationRule\": {\n                \"code\": \"2\",\n                \"amount\": {\n                    \"amount\": \"50\",\n                    \"currencyCode\": \"USD\"\n                }\n            },\n            \"paymentMethod\": \"VA\",\n            \"folioView\": 1\n        }\n    ],\n    \"hotelId\": \"{{HotelId}}\"\n}",
+							"raw": "{\n    \"reservationId\": {\n        \"type\": \"Reservation\",\n        \"id\": \"{{ReservationId}}\"\n    },\n    \"reservationPaymentMethods\": [\n        {\n            \"paymentCard\": {\n                \"cardType\": \"Va\",\n                \"cardNumber\": \"4012188119853892\",\n                \"cardNumberMasked\": \"XXXXXXXXXXXX1881\",\n                \"expirationDate\": \"2026-12-31\",\n                \"expirationDateExpired\": false,\n                \"cardHolderName\": \"Charlie\",\n                \"cardOrToken\": \"Token\",\n                \"citId\": \"654321ABC1234581\"\n            },\n            \"emailFolioInfo\": {\n                \"email\": {\n                    \"emailAddress\": \"{{emailAddress}}\"\n                },\n                \"emailFolio\": true\n            },\n            \"authorizationRule\": {\n                \"code\": \"2\",\n                \"amount\": {\n                    \"amount\": \"50\",\n                    \"currencyCode\": \"{{CurrencyCode}}\"\n                }\n            },\n            \"paymentMethod\": \"VA\",\n            \"folioView\": 1\n        }\n    ],\n    \"hotelId\": \"{{HotelId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostName}}/rsv/v1/hotels/{{HotelId}}/reservations/{{ReservationId}}/paymentMethods",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"rsv",
+								"v1",
+								"hotels",
+								"{{HotelId}}",
+								"reservations",
+								"{{ReservationId}}",
+								"paymentMethods"
+							]
+						},
+						"description": "To update an existing reservation in OPERA by adding or updating reservation comments."
+					},
+					"response": []
+				},
+				{
+					"name": "16a. Pre Arrival - Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 with OPI inactive",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-hotelid",
+								"value": "{{HotelId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-app-key",
+								"value": "{{AppKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reservationId\": {\n        \"type\": \"Reservation\",\n        \"id\": \"{{ReservationId}}\"\n    },\n    \"reservationPaymentMethods\": [\n        {\n            \"paymentCard\": {\n                \"cardType\": \"Va\",\n                \"cardNumber\": \"4111111111111111\",\n                \"expirationDate\": \"2025-03-31\",\n                \"expirationDateExpired\": false,\n                \"cardHolderName\": \"Charlie\",\n                \"processing\": \"Manual\",\n                \"swiped\": false,\n                \"cardOrToken\": \"CardNumber\"\n            },\n            \"emailFolioInfo\": {\n                \"email\": {\n                    \"emailAddress\": \"{{emailAddress}}\"\n                },\n                \"emailFolio\": true\n            },\n            \"authorizationRule\": {\n                \"code\": \"2\",\n                \"amount\": {\n                    \"amount\": \"50\",\n                    \"currencyCode\": \"{{CurrencyCode}\"\n                }\n            },\n            \"paymentMethod\": \"VA\",\n            \"folioView\": 1\n        }\n    ],\n    \"hotelId\": \"{{HotelId}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4520,7 +4697,134 @@
 					"response": []
 				},
 				{
-					"name": "26b.Stay getTransactionCode 2800",
+					"name": "26.Stay getTransactionCode window1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-app-key",
+								"value": "{{AppKey}}",
+								"type": "text"
+							},
+							{
+								"key": "x-hotelid",
+								"value": "{{HotelId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostName}}/fof/config/v1/transactionCodes?hotelIds={{HotelId}}&includeInactive=false",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"fof",
+								"config",
+								"v1",
+								"transactionCodes"
+							],
+							"query": [
+								{
+									"key": "hotelIds",
+									"value": "{{HotelId}}"
+								},
+								{
+									"key": "includeInactive",
+									"value": "false"
+								},
+								{
+									"key": "transactionSubgroupsCodes",
+									"value": "COM",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "26a. Stay - Post Billing Charges on window 1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-hotelid",
+								"value": "{{HotelId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-app-key",
+								"value": "{{AppKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"criteria\": {\r\n        \"charges\": {\r\n            \"postingQuantity\": 1,\r\n            \"usePackageAllowance\": false,\r\n            \"price\": {\r\n                \"amount\": 12,\r\n                \"currencyCode\": \"USD\"\r\n            },\r\n            \"transactionCode\": {{TransactionCode}},\r\n            \"applyRoutingInstructions\": true,\r\n            \"folioWindowNo\": \"1\"\r\n        },\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": {{ReservationId}},\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"cashierId\": {{CashierId}},\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"postIt\": false\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostName}}/csh/v1/hotels/{{HotelId}}/reservations/{{ReservationId}}/charges",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"csh",
+								"v1",
+								"hotels",
+								"{{HotelId}}",
+								"reservations",
+								"{{ReservationId}}",
+								"charges"
+							]
+						},
+						"description": "You can use getTransactionCodes, to see what other available charges a guest could make on their reservation/folio."
+					},
+					"response": []
+				},
+				{
+					"name": "26b.Stay getTransactionCode window2",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -4620,132 +4924,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"criteria\": {\r\n        \"charges\": {\r\n            \"postingQuantity\": 1,\r\n            \"usePackageAllowance\": false,\r\n            \"price\": {\r\n                \"amount\": 50,\r\n                \"currencyCode\": \"USD\"\r\n            },\r\n            \"transactionCode\": {{TransactionCode}},\r\n            \"applyRoutingInstructions\": true,\r\n            \"folioWindowNo\": \"2\"\r\n        },\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": {{ReservationId}},\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"cashierId\": {{CashierId}},\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"postIt\": false\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HostName}}/csh/v1/hotels/{{HotelId}}/reservations/{{ReservationId}}/charges",
-							"host": [
-								"{{HostName}}"
-							],
-							"path": [
-								"csh",
-								"v1",
-								"hotels",
-								"{{HotelId}}",
-								"reservations",
-								"{{ReservationId}}",
-								"charges"
-							]
-						},
-						"description": "You can use getTransactionCodes, to see what other available charges a guest could make on their reservation/folio."
-					},
-					"response": []
-				},
-				{
-					"name": "26.Stay getTransactionCode 5000",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "x-app-key",
-								"value": "{{AppKey}}",
-								"type": "text"
-							},
-							{
-								"key": "x-hotelid",
-								"value": "{{HotelId}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HostName}}/fof/config/v1/transactionCodes?hotelIds={{HotelId}}&includeInactive=false&transactionSubgroupsCodes=COM",
-							"host": [
-								"{{HostName}}"
-							],
-							"path": [
-								"fof",
-								"config",
-								"v1",
-								"transactionCodes"
-							],
-							"query": [
-								{
-									"key": "hotelIds",
-									"value": "{{HotelId}}"
-								},
-								{
-									"key": "includeInactive",
-									"value": "false"
-								},
-								{
-									"key": "transactionSubgroupsCodes",
-									"value": "COM"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "26a. Stay - Post Billing Charges on window 1",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "x-hotelid",
-								"value": "{{HotelId}}",
-								"type": "text"
-							},
-							{
-								"key": "x-app-key",
-								"value": "{{AppKey}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"criteria\": {\r\n        \"charges\": {\r\n            \"postingQuantity\": 1,\r\n            \"usePackageAllowance\": false,\r\n            \"price\": {\r\n                \"amount\": 12,\r\n                \"currencyCode\": \"USD\"\r\n            },\r\n            \"transactionCode\": {{TransactionCode}},\r\n            \"applyRoutingInstructions\": true,\r\n            \"folioWindowNo\": \"1\"\r\n        },\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": {{ReservationId}},\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"cashierId\": {{CashierId}},\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"postIt\": false\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5392,7 +5570,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"folioInfo\": {\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"reservationId\": {\r\n            \"id\": \"{{ReservationId}}\",\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"folioWindowNo\": \"1\",\r\n        \"folioType\": \"{{FolioType}}\",\r\n        \"folioDate\": \"{{Currentdate}}\"\r\n    },\r\n    \"emailRecipients\": [\r\n        {\r\n            \"emailAddress\": \"sobin.mathew@oracle.com\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"folioInfo\": {\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"reservationId\": {\r\n            \"id\": \"{{ReservationId}}\",\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"folioWindowNo\": \"1\",\r\n        \"folioType\": \"{{FolioType}}\",\r\n        \"folioDate\": \"{{Currentdate}}\"\r\n    },\r\n    \"emailRecipients\": [\r\n        {\r\n            \"emailAddress\": \"{{emailAddress}}\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
