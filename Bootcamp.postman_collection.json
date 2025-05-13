@@ -311,6 +311,131 @@
 					"response": []
 				},
 				{
+					"name": "01c. getHotel - set currency",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-hotelid",
+								"value": "{{HotelId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-app-key",
+								"value": "{{AppKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostName}}/ent/config/v1/hotels/{{HotelId}}?fetchInstructions=Airports&fetchInstructions=Alternatehotels&fetchInstructions=Attraction&fetchInstructions=Contacts&fetchInstructions=Corporateinformation&fetchInstructions=Dining&fetchInstructions=Directions&fetchInstructions=EventSpaces&fetchInstructions=Feature&fetchInstructions=General&fetchInstructions=GeneralNotes&fetchInstructions=Miscellaneous&fetchInstructions=Notes&fetchInstructions=Package&fetchInstructions=Raterange&fetchInstructions=Transportation",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"ent",
+								"config",
+								"v1",
+								"hotels",
+								"{{HotelId}}"
+							],
+							"query": [
+								{
+									"key": "fetchInstructions",
+									"value": "Airports"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Alternatehotels"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Attraction"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Contacts"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Corporateinformation"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Dining"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Directions"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "EventSpaces"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Feature"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "General"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "GeneralNotes"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Miscellaneous"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Notes"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Package"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Raterange"
+								},
+								{
+									"key": "fetchInstructions",
+									"value": "Transportation"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "02.Profile - Create Guest Profile",
 					"event": [
 						{

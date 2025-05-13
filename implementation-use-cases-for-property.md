@@ -4,6 +4,8 @@
   - [Objective of Use Cases](#objective-of-use-cases)
   - [0 Set Currency](#0-set-currency)
   - [1 Get Token](#1-get-token)
+    - [1b get Business Date](#1b-get-business-date)
+    - [1c get Hotel](#1c-get-hotel)
   - [2 Create Guest Profile](#2-create-guest-profile)
   - [3 Create Company Profile OPTIONAL](#3-create-company-profile-optional)
   - [4 Create AR Account for Company Profile OPTIONAL](#4-create-ar-account-for-company-profile-optional)
@@ -72,6 +74,14 @@ And the following body parameters:
 * Body parameters for obtaining your initial access token
 * `grant_type`. Required to be  `client_credentials`
 * scope. `grant_type` is client_credentials, set this to your assigned scope. Check within Sandbox environment for OHIPLAB in your Partner Developer Portal
+
+### 1b get Business Date
+
+Since your hotel may not be on today's date we need to get the business date for your hotel and set it in the environment variables.
+
+### 1c get Hotel
+
+The currency is required for later examples, so we need to run getHotel to obtain the currency for your hotel and set it in the environment variable.
 
 ## 2 Create Guest Profile
 
