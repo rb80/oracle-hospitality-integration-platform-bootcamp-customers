@@ -2,6 +2,7 @@
 
 - [Implementation Use Cases](#implementation-use-cases)
   - [Objective of Use Cases](#objective-of-use-cases)
+  - [0 Set Currency](#0-set-currency)
   - [1 Get Token](#1-get-token)
   - [2 Create Guest Profile](#2-create-guest-profile)
   - [3 Create Company Profile OPTIONAL](#3-create-company-profile-optional)
@@ -52,6 +53,10 @@
 * Analyze real-world scenarios to improve decision-making with property data.
 
 * Develop skills to optimize property data usage for efficiency and accuracy.
+
+## 0 Set Currency
+
+Before starting, set the `CurrencyCode` environment variable to reflect the currency of the hotel you're using.
 
 ## 1 Get Token
 
