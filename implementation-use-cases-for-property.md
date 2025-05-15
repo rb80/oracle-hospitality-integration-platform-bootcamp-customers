@@ -286,7 +286,7 @@ This is for illustration purposes, because it relies upon a key card vendor bein
 
 ## 23-Create a Service Request OPTIONAL
 
-1. Fetch Service request codes
+1. Fetch Service request codes.  Choose one of the service request codes in the response and update the environment variables `ServiceRequestCodes` and `DeptCode` with the values from this service request code.
 2. Create a Service request to provide towel by Housekeeping department. Ensure you change the tag `openDate` within the payload
 3. Fetch the Service Request Codes applied to the reservation to see whether it was successfully inserted.  *Note* that due to a known bug this returns all service requests.  Look through the response body to check that the service request created in step 1 exists in the response.
 
