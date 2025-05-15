@@ -312,6 +312,22 @@
 				},
 				{
 					"name": "01c. getHotel - set currency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update CurrencyCode environment variable with the value from the response\", function () {\r",
+									"    var currencyCode = pm.response.json().hotelConfigInfo.propertyControls.currencyFormatting.currencyCode;\r",
+									"    pm.environment.set(\"CurrencyCode\", currencyCode);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1462,7 +1478,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HostName}}/par/v1/hotels/{{HotelId}}/availability?adults=1&children=0&roomStayQuantity=1&limit=10&offset=0&ratePlanCode={{RatePlanCode}}&roomStayStartDate={{Currentdate}}&roomStayEndDate={{Currentdateplus1}}&roomType={{RoomType}}",
+							"raw": "{{HostName}}/par/v1/hotels/{{HotelId}}/availability?adults=1&children=0&roomStayQuantity=1&limit=10&offset=0&roomStayStartDate={{Currentdate}}&roomStayEndDate={{Currentdateplus1}}",
 							"host": [
 								"{{HostName}}"
 							],
@@ -1496,7 +1512,8 @@
 								},
 								{
 									"key": "ratePlanCode",
-									"value": "{{RatePlanCode}}"
+									"value": "{{RatePlanCode}}",
+									"disabled": true
 								},
 								{
 									"key": "roomStayStartDate",
@@ -1508,7 +1525,8 @@
 								},
 								{
 									"key": "roomType",
-									"value": "{{RoomType}}"
+									"value": "{{RoomType}}",
+									"disabled": true
 								}
 							]
 						}
@@ -2546,7 +2564,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"criteria\": {\n        \"hotelId\": \"{{HotelId}}\",\n        \"reservationId\": {\n            \"type\": \"Reservation\",\n            \"id\": \"{{ReservationId}}\"\n        },\n        \"refreshFolio\": true,\n        \"retrievePostingsForRoomRouting\": false,\n        \"folio\": {\n            \"guestInfo\": {\n                \"profileIdList\": []\n            },\n            \"payeeInfo\": {\n                \"payeeId\": {\n                    \"type\": \"Profile\",\n                    \"id\": \"{{CompanyId}}\"\n                },\n                \"payeeAddress\": {\n                    \"address\": {\n                        \"addressLine\": [\n                            null\n                        ]\n                    }\n                }\n            },\n            \"aRNumber\": \"{{CompanyAccountNo}}\",\n            \"instructions\": [\n                {\n                    \"duration\": {\n                        \"daily\": false,\n                        \"sunday\": true,\n                        \"monday\": true,\n                        \"tuesday\": true,\n                        \"wednesday\": true,\n                        \"thursday\": true,\n                        \"friday\": true,\n                        \"saturday\": true\n                    },\n                    \"billingInstructions\": [\n                        {\n                            \"billingCode\": \"{{CompanyRoutingCode}}\"\n                        }\n                    ],\n                    \"limitUsed\": \"0\"\n                }\n            ],\n            \"folioWindowNo\": \"2\",\n            \"paymentMethod\": \"{{CompanyPaymentMethod}}\"\n        }\n    }\n}",
+							"raw": "{\n    \"criteria\": {\n        \"hotelId\": \"{{HotelId}}\",\n        \"reservationId\": {\n            \"type\": \"Reservation\",\n            \"id\": \"{{ReservationId}}\"\n        },\n        \"refreshFolio\": true,\n        \"retrievePostingsForRoomRouting\": false,\n        \"folio\": {\n            \"guestInfo\": {\n                \"profileIdList\": []\n            },\n            \"payeeInfo\": {\n                \"payeeId\": {\n                    \"type\": \"Profile\",\n                    \"id\": \"{{CompanyId}}\"\n                },\n                \"payeeAddress\": {\n                    \"address\": {\n                        \"addressLine\": [\n                            null\n                        ]\n                    }\n                }\n            },\n            \"aRNumber\": \"{{CompanyAccountNo}}\",\n            \"instructions\": [\n                {\n                    \"duration\": {\n                        \"daily\": false,\n                        \"sunday\": true,\n                        \"monday\": true,\n                        \"tuesday\": true,\n                        \"wednesday\": true,\n                        \"thursday\": true,\n                        \"friday\": true,\n                        \"saturday\": true\n                    },\n                    \"billingInstructions\": [\n                        {\n                            \"billingCode\": \"{{CompanyRoutingCode}}\"\n                        }\n                    ],\n                    \"limitUsed\": \"0\"\n                }\n            ],\n            \"folioWindowNo\": \"2\"\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2740,7 +2758,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"reservations\": [\n    {\n      \"reservationIdList\": [\n        {\n          \"type\": \"Reservation\",\n          \"id\": \"{{ReservationId}}\"\n        }\n      ],\n      \"reservationPaymentMethods\": [\n        {\n          \"paymentMethod\": \"{{CompanyPaymentMethod}}\",\n          \"folioView\": \"2\"\n        }\n      ],\n      \"hotelId\": \"{{HotelId}}\",\n      \"preRegistered\": false,\n      \"allowMobileCheckout\": false\n    }\n  ]\n}",
+							"raw": "{\n  \"reservations\": [\n    {\n      \"reservationIdList\": [\n        {\n          \"type\": \"Reservation\",\n          \"id\": \"{{ReservationId}}\"\n        }\n      ],\n      \"hotelId\": \"{{HotelId}}\",\n      \"preRegistered\": false,\n      \"allowMobileCheckout\": false\n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5635,6 +5653,1707 @@
 				}
 			],
 			"description": "Please reference [the lab](https://github.com/rb80/oracle-hospitality-integration-platform-bootcamp-customers/blob/main/implementation-use-cases-for-property.md)) for using this Postman collection."
+		},
+		{
+			"name": "Distribution & Property Workflow",
+			"item": [
+				{
+					"name": "01a. OAuth Token and set variables",
+					"item": [
+						{
+							"name": "Get OAuth Token for Resource Owner environments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"Token\", jsonData.access_token);\r",
+											"var uuid = require('uuid');\r",
+											"var myUUID = uuid.v4();\r",
+											"pm.environment.set(\"MyGUID\", myUUID);\r",
+											"pm.environment.set(\"HashedAppKey\", CryptoJS.SHA256(pm.environment.get(\"AppKey\")).toString());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{CLIENT_SECRET}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{CLIENT_ID}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "{{Username}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{Password}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HostName}}/oauth/v1/tokens",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"oauth",
+										"v1",
+										"tokens"
+									]
+								},
+								"description": "Use this API to request an oAuth token when the environment is a Resource Owner environment. You can see which oAuth flow an environment supports by looking at the Environment page in the OHIP Developer Portal. For more information see (Authenticating to Oracle Hospitality Property APIs)\\[[https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/c_oracle_hospitality_property_apis.htm#AuthenticatingToOracleHospitalityPr-1BD54F80](https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/c_oracle_hospitality_property_apis.htm#AuthenticatingToOracleHospitalityPr-1BD54F80)\\] under the heading \"Resource Owner-Based Authentication\".\n\nTo call this API you will need:\n\n1. To know the environment is a Resource Owner environment - see above\n2. A valid ClientId and ClientSecret\n3. An integration user and its password that has been approved by the environment owner\n4. A valid application key\n    \n\nBecause of this, oAuth tokens may only be used when calling the given environment.\n\noAuth tokens expire after 60 minutes. We recommend obtaining a new oAuth token every 50 minutes, but not more frequently."
+							},
+							"response": []
+						},
+						{
+							"name": "Get OAuth Token for Client Credentials environments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"Token\", jsonData.access_token);\r",
+											"var uuid = require('uuid');\r",
+											"var myUUID = uuid.v4();\r",
+											"pm.environment.set(\"MyGUID\", myUUID);\r",
+											"pm.environment.set(\"HashedAppKey\", CryptoJS.SHA256(pm.environment.get(\"AppKey\")).toString());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{CLIENT_SECRET}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{CLIENT_ID}}",
+											"type": "string"
+										},
+										{
+											"key": "undefined",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "enterpriseId",
+										"value": "{{EnterpriseId}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "urn:opc:hgbu:ws:__myscopes__",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HostName}}/oauth/v1/tokens",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"oauth",
+										"v1",
+										"tokens"
+									]
+								},
+								"description": "Use this API to request an oAuth token when the environment is a Client Credentials environment. You can see which oAuth flow an environment supports by looking at the Environment page in the OHIP Developer Portal. For more information see (Authenticating to Oracle Hospitality Property APIs)\\[[https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/c_oracle_hospitality_property_apis.htm#AuthenticatingToOracleHospitalityPr-1BD54F80](https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/c_oracle_hospitality_property_apis.htm#AuthenticatingToOracleHospitalityPr-1BD54F80)\\] under the heading \"Client Credentials-Based Authentication\".\n\nTo call this API you will need:\n\n1. To know the environment is a Client Credentials environment - see above\n2. A valid ClientId and ClientSecret\n3. A valid EnterpriseId\n4. A valid application key\n    \n\nBecause of this, oAuth tokens may only be used when calling the given environment.\n\noAuth tokens expire after 60 minutes. We recommend obtaining a new oAuth token every 50 minutes, but not more frequently."
+							},
+							"response": []
+						},
+						{
+							"name": "01b. get Business Date",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Set Currentdate and Currentdateplus1 variables\r",
+											"var resp = pm.response.json();\r",
+											"var moment = require('moment');\r",
+											"\r",
+											"var respBusinessDate = resp.hotels[0].businessDate;\r",
+											"\r",
+											"// Parse the businessDate string into a moment object\r",
+											"var momentBusinessDate = moment(respBusinessDate);\r",
+											"\r",
+											"// Format the date as YYYY-MM-DD\r",
+											"var formattedBusinessDate = momentBusinessDate.format(\"YYYY-MM-DD\");\r",
+											"\r",
+											"// Set the 'Currentdate' environment variable in Postman\r",
+											"pm.environment.set('Currentdate', formattedBusinessDate);\r",
+											"// Loop through and populate environment variables for the next 13 days\r",
+											"for (let i = 1; i <= 13; i++) {\r",
+											"    pm.environment.set(`Currentdateplus${i}`, momentBusinessDate.add(i, 'days').format('YYYY-MM-DD'));\r",
+											"}\r",
+											"\r",
+											"// Set environment variables for 30 and 60 days from now\r",
+											"pm.environment.set('Currentdateplus30', momentBusinessDate.add(30, 'days').format('YYYY-MM-DD'));\r",
+											"pm.environment.set('Currentdateplus60', momentBusinessDate.add(60, 'days').format('YYYY-MM-DD'));\r",
+											"\r",
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Hotel ID</th>\r",
+											"        <th>Business Date</th>\r",
+											"        <th>Current Date</th>\r",
+											"        <th>Current Date Plus 1</th>\r",
+											"        <th>Current Date Plus 2</th>\r",
+											"        <th>Current Date Plus 3</th>\r",
+											"        <th>Current Date Plus 4</th>\r",
+											"        <th>Current Date Plus 5</th>\r",
+											"    </tr>\r",
+											"    \r",
+											"    {{#each response.hotels}}\r",
+											"        <tr>\r",
+											"            <td>{{hotelId}}</td>\r",
+											"            <td>{{businessDate}}</td>\r",
+											"            <td>{{../environment.Currentdate}}</td>\r",
+											"            <td>{{../environment.Currentdateplus1}}</td>\r",
+											"            <td>{{../environment.Currentdateplus2}}</td>\r",
+											"            <td>{{../environment.Currentdateplus3}}</td>\r",
+											"            <td>{{../environment.Currentdateplus4}}</td>\r",
+											"            <td>{{../environment.Currentdateplus5}}</td>\r",
+											"        </tr>\r",
+											"    {{/each}}\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return {response: pm.response.json(), environment: pm.environment.toObject()}\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "x-hotelId",
+										"value": "{{HotelId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HostName}}/bof/v1/hotels/{{HotelId}}/businessDate",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"bof",
+										"v1",
+										"hotels",
+										"{{HotelId}}",
+										"businessDate"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "01-05. Distribution APIs",
+					"item": [
+						{
+							"name": "1. get OAuth Token - Distribution",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Save the Distribution Token to environment variable\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.environment.set(\"DistributionToken\", jsonData.access_token);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded;charset=UTF-8",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "x-request-id",
+										"value": "{{$randomUUID}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "{{Username}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{Password}}",
+											"type": "text"
+										},
+										{
+											"key": "content-type",
+											"value": "application/x-www-form-urlencoded;charset=UTF-8",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HostName}}/hdpba/oauth2/v1/token",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"hdpba",
+										"oauth2",
+										"v1",
+										"token"
+									]
+								},
+								"description": "This is required to access the OPERA Cloud Distribution REST APIs.\n\nThe username and password for Distribution API are provided by Oracle Hospitality Distribution channel onboarding process, by Oracle, along with your channelCode.\n\n### Obtaining a token\n\nTo obtain a token include the following body parameters:\n\n- **username**. set this to your OPERA Cloud Distribution username.\n    \n- **password**. Set this to your OPERA Cloud Distribution user's password."
+							},
+							"response": []
+						},
+						{
+							"name": "2. get Properties",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// collect parameters passed for dispaly \r",
+											"var arrival = pm.environment.get(\"currentdateplus1\")\r",
+											"\r",
+											"// Set template  for html page \r",
+											"// var hotels = pm.environment.get(\"UI-shop-response\")\r",
+											"var hotels = \r",
+											"`\r",
+											"\r",
+											"<html>\r",
+											"    <head>\r",
+											"        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r",
+											"        <title>2 Column Layout &mdash; Left Menu</title>\r",
+											"\r",
+											"        <style type=\"text/css\">\r",
+											"            h1 {\r",
+											"                font-size: 2.5rem;\r",
+											"                font-family: Georgia, serif;\r",
+											"                color: #e6ac58;\r",
+											"            }\r",
+											"            body {\r",
+											"                margin: 10px;\r",
+											"                background-color: #494b4d;\r",
+											"                color: #fff;\r",
+											"                font-family: \"Oracle Sans Regular\", Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;\r",
+											"                font-size: 1.5rem;\r",
+											"                line-height: 1.2;\r",
+											"            }\r",
+											"            body {\r",
+											"                margin: 0;\r",
+											"                padding: 0;\r",
+											"\r",
+											"                line-height: 1.5em;\r",
+											"            }\r",
+											"\r",
+											"             table, th, td {\r",
+											"\r",
+											"}\r",
+											"\r",
+											"table th {\r",
+											"\r",
+											"  text-align: left;\r",
+											"  vertical-align:top;\r",
+											"    border: 1px solid ;\r",
+											"  padding: 10px;\r",
+											" \r",
+											" \r",
+											"} \r",
+											"\r",
+											"table td {\r",
+											"  border: 1px solid ;\r",
+											"  padding: 10px;\r",
+											" \r",
+											" \r",
+											"} \r",
+											"\r",
+											"            main {\r",
+											"                padding-bottom: 10010px;\r",
+											"                margin-bottom: -10000px;\r",
+											"                float: left;\r",
+											"                width: 100%;\r",
+											"            }\r",
+											"\r",
+											"            #content {\r",
+											"                float: left;\r",
+											"                width: 100%;\r",
+											"                margin-left: -100%;\r",
+											"                padding-bottom: 10010px;\r",
+											"                margin-bottom: -10000px;\r",
+											"            }\r",
+											"\r",
+											"            #wrapper {\r",
+											"                overflow: hidden;\r",
+											"            }\r",
+											"\r",
+											"            #offers {\r",
+											"                margin-left: 40%; /* Same as 'nav' width */\r",
+											"            }\r",
+											"\r",
+											"            .innertube {\r",
+											"                margin: 15px; /* Padding for content */\r",
+											"                margin-top: 0;\r",
+											"            }\r",
+											"\r",
+											"            content ul {\r",
+											"                list-style-type: none;\r",
+											"                margin: 0;\r",
+											"                padding: 0;\r",
+											"            }\r",
+											"\r",
+											"            content ul a {\r",
+											"                color: yellow;\r",
+											"                text-decoration: none;\r",
+											"            }\r",
+											"        </style>\r",
+											"    </head>\r",
+											"\r",
+											"    <body>\r",
+											"        <div id=\"wrapper\">\r",
+											"            <main>\r",
+											"              \r",
+											"            </main>\r",
+											"\r",
+											"            <nav id=\"content\">\r",
+											"                <div class=\"innertube\">\r",
+											"                    <h1>Multi-Property Availability Response</h1>\r",
+											"                    <table>\r",
+											"                        <tr>\r",
+											"                            <th>Hotel Code</th>\r",
+											"                            <th>Hotel Name</th>\r",
+											"                            <th>Chain Code</th>\r",
+											"                            <th>Availablity Status</th>\r",
+											"                            <th>Min Rate before tax</th>\r",
+											"                            <th>Min Rate after tax</th>\r",
+											"                            <th>Min Rate Currency</th>\r",
+											"                            <th>Min Rate Mode</th>\r",
+											"                            <th>Min Rate Changes</th>\r",
+											"                            <th>Max Rate before tax</th>\r",
+											"                            <th>Max Rate after tax</th>\r",
+											"                            <th>Max Rate Currency</th>\r",
+											"                            <th>Max Rate Mode</th>\r",
+											"                            <th>Max Rate changes</th>\r",
+											"                        </tr>\r",
+											"                        {{#each response.roomStays}}\r",
+											"                        <tr>\r",
+											"                            <td>{{propertyInfo.hotelCode}}</td>\r",
+											"                            <td>{{propertyInfo.hotelName}}</td>\r",
+											"                            <td>{{propertyInfo.chainCode}}</td>\r",
+											"                            <td>{{availability}}</td>\r",
+											"                            <td>{{minRate.amountBeforeTax}}</td>\r",
+											"                            <td>{{minRate.amountAfterTax}}</td>\r",
+											"                            <td>{{minRate.currencyCode}}</td>\r",
+											"                            <td>{{minRate.rateMode}}</td>\r",
+											"                            <td>{{minRate.hasRateChange}}</td>\r",
+											"                            <td>{{maxRate.amountBeforeTax}}</td>\r",
+											"                            <td>{{maxRate.amountAfterTax}}</td>\r",
+											"                            <td>{{maxRate.currencyCode}}</td>\r",
+											"                            <td>{{maxRate.rateMode}}</td>\r",
+											"                            <td>{{maxRate.hasRateChange}}</td>\r",
+											"                            {{/each}}\r",
+											"                        </tr>\r",
+											"                    </table>\r",
+											"\r",
+											"                    \r",
+											"                </div>\r",
+											"            </nav>\r",
+											"        </div>\r",
+											"    </body>\r",
+											"</html>\r",
+											"\r",
+											"\r",
+											"\r",
+											"`\r",
+											"\r",
+											"\r",
+											" \r",
+											"// Set visualizer\r",
+											"pm.visualizer.set(hotels, {response: pm.response.json()});\r",
+											" \r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{DistributionToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-channelCode",
+										"value": "{{ChannelCode}}",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "x-request-id",
+										"value": "{{$randomUUID}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HostName}}/shop/v1/hotels?adults=2&numberOfUnits=1&chainCode={{ChainCode}}&hotelCodes={{HotelCode1}},{{HotelCode2}},{{HotelCode3}},{{HotelCode4}},{{HotelCode5}},{{HotelCode6}}&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"shop",
+										"v1",
+										"hotels"
+									],
+									"query": [
+										{
+											"key": "adults",
+											"value": "2"
+										},
+										{
+											"key": "numberOfUnits",
+											"value": "1"
+										},
+										{
+											"key": "chainCode",
+											"value": "{{ChainCode}}"
+										},
+										{
+											"key": "hotelCodes",
+											"value": "{{HotelCode1}},{{HotelCode2}},{{HotelCode3}},{{HotelCode4}},{{HotelCode5}},{{HotelCode6}}"
+										},
+										{
+											"key": "arrivalDate",
+											"value": "{{currentdateplus10}}"
+										},
+										{
+											"key": "departureDate",
+											"value": "{{currentdateplus13}}"
+										}
+									]
+								},
+								"description": "This operation allows a channel to retrieve multi-property availability summary with basic information returned.\n\nChannel must send at least one hotel code and stay criteria to see if the properties are available, and what is their minimum and maximum price across all room types."
+							},
+							"response": []
+						},
+						{
+							"name": "3. get Property Offers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// collect parameters passed for dispaly \r",
+											"var arrival = pm.environment.get(\"currentdateplus1\")\r",
+											"\r",
+											"// Set template  for html page \r",
+											"// var hotels = pm.environment.get(\"UI-shop-response\")\r",
+											"var hotels = \r",
+											"`\r",
+											"\r",
+											"<html>\r",
+											"   <head>\r",
+											"      <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r",
+											"      <title>2 Column Layout &mdash; Left Menu</title>\r",
+											"      <style type=\"text/css\">\r",
+											"       tr {\r",
+											"    font-size: 1.5em;\r",
+											"\r",
+											"}\r",
+											"\r",
+											" table, th, td {\r",
+											"\r",
+											"}\r",
+											"\r",
+											"table th {\r",
+											"\r",
+											"  text-align: left;\r",
+											"  vertical-align:top;\r",
+											"    border: 1px solid ;\r",
+											"  padding: 10px;\r",
+											" \r",
+											" \r",
+											"} \r",
+											"\r",
+											"table td {\r",
+											"  border: 1px solid ;\r",
+											"  padding: 10px;\r",
+											" \r",
+											" \r",
+											"} \r",
+											"\r",
+											"         h1 {\r",
+											"         font-size: 2.5rem;\r",
+											"         font-family: Georgia, serif;\r",
+											"         color: #e6ac58;\r",
+											"         }\r",
+											"         .rateTitle\r",
+											"         {\r",
+											"      \r",
+											"         }\r",
+											"         .detailedDescription\r",
+											"         {\r",
+											"         font-size:      1.2rem;\r",
+											"         margin-left:20px;\r",
+											"         max-width: 80%;\r",
+											"         font-style: italic;\r",
+											"         }\r",
+											"         body {\r",
+											"         margin: 10px;\r",
+											"         background-color: #494b4d;\r",
+											"         color: #fff;\r",
+											"         font-family: \"Oracle Sans Regular\", Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;\r",
+											"         font-size: 1.5rem;\r",
+											"         line-height: 1.2;\r",
+											"         }\r",
+											"         body {\r",
+											"         margin: 0;\r",
+											"         padding: 0;\r",
+											"         line-height: 1.5em;\r",
+											"         }\r",
+											"         main {\r",
+											"         padding-bottom: 10010px;\r",
+											"         margin-bottom: -10000px;\r",
+											"         float: left;\r",
+											"         width: 100%;\r",
+											"         }\r",
+											"         #content {\r",
+											"         float: left;\r",
+											"         width: 50%;\r",
+											"         margin-left: -100%;\r",
+											"   \r",
+											"         padding: 10px;\r",
+											"         }\r",
+											"         #wrapper {\r",
+											"         overflow: hidden;\r",
+											"         }\r",
+											"         #offers {\r",
+											"         margin-left: 50%; /* Same as 'nav' width */;\r",
+											"        \r",
+											" \r",
+											"         padding: 10px;\r",
+											"         }\r",
+											"         .innertube {\r",
+											"         margin: 15px; /* Padding for content */\r",
+											"     \r",
+											"         margin-top: 0;\r",
+											"         }\r",
+											"         content ul {\r",
+											"         list-style-type: none;\r",
+											"          \r",
+											"         margin: 0;\r",
+											"         padding: 0;\r",
+											"         }\r",
+											"         content ul a {\r",
+											"         color: yellow;\r",
+											"         text-decoration: none;\r",
+											"         }\r",
+											"\r",
+											"         .ratePlans {\r",
+											"          padding: 1.2rem;\r",
+											"          background: #585151;\r",
+											"          }\r",
+											"\r",
+											"           .roomTypesSection {\r",
+											"          padding: 1.2rem;\r",
+											"          background: #585151;\r",
+											"          }\r",
+											"\r",
+											"          .propertyInfo {\r",
+											"          padding: 1.2rem;\r",
+											"          background: #585151;\r",
+											"          }\r",
+											"\r",
+											"      </style>\r",
+											"   </head>\r",
+											"   <body>\r",
+											"      <div id=\"wrapper\">\r",
+											"         <main>\r",
+											"            <div id=\"offers\">\r",
+											"               <h1>Available Offers</h1>\r",
+											"               <table class=\"offers\">\r",
+											"                  <tr>\r",
+											"                     <th>Room Type <br>Rate Code</th>\r",
+											"                \r",
+											"                                <th>Default <br> Guarantee  <br> Requirement <br> </th>\r",
+											"                                    <th>Rate <br>mode</th>\r",
+											"                                                    <th>Changes<br>during<br>stay?</th>\r",
+											"                     <th>Amount <br> Before<br>Tax</th>\r",
+											"                           <th>Amount <br>After<br>Tax</th>\r",
+											"                 \r",
+											"     \r",
+											"                     <th>Total <br> Before<br>Tax</th>\r",
+											"                 \r",
+											"                     <th>Total <br> After<br>Tax</th>\r",
+											"                     <th>Total Stay</th>\r",
+											"                          <th>Currency</th>\r",
+											"          \r",
+											"                  </tr>\r",
+											"                  {{#each response.roomStays}} {{#each offers}}\r",
+											"                  <tr>\r",
+											"                     <td>{{bookingCode}}</td>\r",
+											"             \r",
+											"                          <td>{{rateInformation.guaranteeRequirement}}</td>\r",
+											"                                  <td>{{rateInformation.rate.rateMode}}</td>\r",
+											"                                                      <td>{{rateChangeDuringStay}}</td>\r",
+											"                     <td>{{rateInformation.rate.rateModeAmount.amountBeforeTax}}</td>\r",
+											"                       <td>{{rateInformation.rate.rateModeAmount.amountAfterTax}}</td>\r",
+											"             \r",
+											" \r",
+											"                     <td>{{total.amountBeforeTax}}</td>\r",
+											"                \r",
+											"                     <td>{{total.taxes.totalTax}}</td>\r",
+											"                     <td>{{total.amountAfterTax}}</td>\r",
+											"                     <td>{{total.currencyCode}}</td>\r",
+											"                \r",
+											"                  </tr>\r",
+											"                  {{/each}} {{/each}}\r",
+											"               </table>\r",
+											"            </div>\r",
+											"         </main>\r",
+											"         <nav id=\"content\">\r",
+											"            <div class=\"innertube\">\r",
+											"               <div class=\"propertyInfo\">\r",
+											"               \r",
+											"               <h1>Property Info</h1>\r",
+											"               <table>\r",
+											"                  <tr>\r",
+											"                     <th>Hotel Code</th>\r",
+											"                     <th>Hotel Name</th>\r",
+											"                     <th>Chain Code</th>\r",
+											"                     <th>Availablity Status</th>\r",
+											"                  </tr>\r",
+											"                  {{#each response.roomStays}}\r",
+											"                  <tr>\r",
+											"                     <td>{{propertyInfo.hotelCode}}</td>\r",
+											"                     <td>{{propertyInfo.hotelName}}</td>\r",
+											"                     <td>{{propertyInfo.chainCode}}</td>\r",
+											"                     <td>{{availability}}</td>\r",
+											"                     {{/each}}\r",
+											"                  </tr>\r",
+											"               </table>\r",
+											"               </div>\r",
+											"               <br />\r",
+											"               \r",
+											"            \r",
+											"               <div class=\"ratePlans\">\r",
+											"                  <h1>Rate Plans</h1>\r",
+											"                  {{#each response.roomStays}} {{#each ratePlans}}\r",
+											"                  <div class=\"rateTitle\">\r",
+											"                     {{ratePlanCode}} - {{ratePlanName}} <br>  Status: {{availabilityStatus}}  <br> OTA mealPlan: {{mealPlan.mealPlanCode}} - mealPlanDescription: {{mealPlan.mealPlanDescription}} <br> OTA Rate Plan Type: {{ratePlanType}}  - ID Required: {{identificationRequired}}\r",
+											"                  </div>\r",
+											"                       <div>\r",
+											"                   Commission: {{commissionable}} - Tax Incl: {{taxInclusive}}  \r",
+											"                  </div>\r",
+											"\r",
+											"\r",
+											"\r",
+											"            \r",
+											"                  <div>\r",
+											"                     {{description.line1}} <br>\r",
+											"                     {{description.line2}} <br>\r",
+											"                     {{description.line3}} <br>\r",
+											"                     <div class=\"detailedDescription\">\r",
+											"                        {{description.detailedDescription}} \r",
+											"                     </div>\r",
+											"                  </div>\r",
+											"             \r",
+											"                  <hr>\r",
+											"                  {{/each}} {{/each}}\r",
+											"               </div>\r",
+											"               <br>\r",
+											"               <div class=\"roomTypesSection\">\r",
+											"               <h1>Room Types</h1>\r",
+											"               <table class=\"roomTypes\">\r",
+											"                  <tr>\r",
+											"                     <th>Room Type Code</th>\r",
+											"                     <th>Description</th>\r",
+											"                     <th>Qty</th>\r",
+											"                     <th>Occ Match</th>\r",
+											"                  </tr>\r",
+											"                  {{#each response.roomStays}} {{#each roomTypes}}\r",
+											"                  <tr>\r",
+											"                     <td>{{roomType}}</td>\r",
+											"                     <td>{{description}}</td>\r",
+											"                     <td>{{numberOfUnits}}</td>\r",
+											"                     <td>{{adultOccupancyMatch}}</td>\r",
+											"                  </tr>\r",
+											"                  {{/each}} {{/each}}\r",
+											"               </table>\r",
+											"               <br />\r",
+											"            </div>\r",
+											"            </div>\r",
+											"         </nav>\r",
+											"      </div>\r",
+											"   </body>\r",
+											"</html>\r",
+											"\r",
+											"\r",
+											"\r",
+											"`\r",
+											"\r",
+											"\r",
+											" \r",
+											"// Set visualizer\r",
+											"pm.visualizer.set(hotels, {response: pm.response.json()});\r",
+											" \r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{DistributionToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "x-channelCode",
+										"value": "{{ChannelCode}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "de",
+										"type": "text"
+									},
+									{
+										"key": "x-request-id",
+										"value": "{{$randomUUID}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HostName}}/shop/v1/hotels/{{HotelCode1}}/offers?includeAmenities=false&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}&numberOfUnits=1&adults=2",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"shop",
+										"v1",
+										"hotels",
+										"{{HotelCode1}}",
+										"offers"
+									],
+									"query": [
+										{
+											"key": "includeAmenities",
+											"value": "false"
+										},
+										{
+											"key": "arrivalDate",
+											"value": "{{currentdateplus10}}",
+											"description": "Arrival/Check-in Date Example: 2025-06-01."
+										},
+										{
+											"key": "departureDate",
+											"value": "{{currentdateplus13}}"
+										},
+										{
+											"key": "numberOfUnits",
+											"value": "1"
+										},
+										{
+											"key": "adults",
+											"value": "2",
+											"description": "Number of adults Example: 1. Default: 1."
+										}
+									]
+								},
+								"description": "Get property offers for Public rates\n\nProperty Offers provides the ability to request a specific property and get a list of available offers (rate plan codes and room types assigned to channel).\n\nThere are several search parameters that can be used to filter the search results.\n\nThe response will provide information about the property and each **room type** and **rate plan** individually as well as **offers** for each available room type and rate plan combination.\n\nThe offers response will also provide information about booking rules, cancellation, deposit, guarantee policies as well as taxes and total price."
+							},
+							"response": []
+						},
+						{
+							"name": "4. get Property Offer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{DistributionToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "x-channelCode",
+										"value": "{{ChannelCode}}",
+										"type": "text"
+									},
+									{
+										"key": "x-requestid",
+										"value": "{{$randomUUID}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HostName}}/shop/v1/hotels/{{HotelCode1}}/offer?adults=1&numberOfUnits=1&ratePlanCode={{RatePlanCode}}&roomType={{RoomType}}&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}&includeAmenities=True",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"shop",
+										"v1",
+										"hotels",
+										"{{HotelCode1}}",
+										"offer"
+									],
+									"query": [
+										{
+											"key": "adults",
+											"value": "1"
+										},
+										{
+											"key": "numberOfUnits",
+											"value": "1"
+										},
+										{
+											"key": "ratePlanCode",
+											"value": "{{RatePlanCode}}"
+										},
+										{
+											"key": "roomType",
+											"value": "{{RoomType}}"
+										},
+										{
+											"key": "arrivalDate",
+											"value": "{{currentdateplus10}}"
+										},
+										{
+											"key": "departureDate",
+											"value": "{{currentdateplus13}}"
+										},
+										{
+											"key": "includeAmenities",
+											"value": "True"
+										}
+									]
+								},
+								"description": "Similar to property Offers, this operation allows to request availability for specific offer. This will return same information as get Property Offers, adding a few more content information.\n\nIdeal to present offer before guest decides to book."
+							},
+							"response": []
+						},
+						{
+							"name": "5. post Reservation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    .tftable {font-size:14px;color:#333333;width:50%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    .tftable tr {background-color:#ffffff;}",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+											"    .tftable tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"",
+											"",
+											"<table class=\"tftable\" border=\"1\">",
+											"",
+											" {{#each response}}  {{#each reservationGuests}} {{#each profileInfo.profile.customer.personName}}",
+											"    <tr>",
+											"     ",
+											"        <th>Surname</th>",
+											"          <th>Given name</th>",
+											"   ",
+											"    </tr>",
+											"    ",
+											"   ",
+											"       ",
+											"        <tr>",
+											"         ",
+											"            <td>{{surname}}</td>",
+											"            <td>{{givenName}}</td>",
+											"            ",
+											"        </tr>",
+											"     ",
+											"    {{/each}}    {{/each}}  {{/each}}",
+											"</table>",
+											"",
+											"<table class=\"tftable\" border=\"1\">",
+											"    <tr>",
+											"        <th>Reservation IDs</th>",
+											"        <th>Type</th>",
+											"        <th>ID Context</th>",
+											"        <th>ID Extension</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response}}",
+											"        {{#each reservationIds}}",
+											"        <tr>",
+											"            <td>{{id}}</td>",
+											"            <td>{{type}}</td>",
+											"            <td>{{idContext}}</td>",
+											"            <td>{{idExtension}}</td>",
+											"        </tr>",
+											"        {{/each}}",
+											"    {{/each}}",
+											"</table>",
+											"",
+											"",
+											" ",
+											"",
+											"",
+											"",
+											"",
+											"",
+											"<table class=\"tftable\" border=\"1\">",
+											"    <tr>",
+											"        <th>Reservation Status</th>",
+											"        <th>Arrival Date</th>",
+											"        <th>Departure Date</th>",
+											"        <th>Number of adults</th>",
+											"            <th>Number of children</th>",
+											"                <th>Total Before Tax</th>",
+											"                    <th>Total After Tax</th>",
+											"                        <th>Guarantee Code</th>",
+											"                            <th>Guarantee Type</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response}}",
+											"       ",
+											"        <tr>",
+											"            <td>{{reservationStatus}}</td>",
+											"            <td>{{roomStay.arrivalDate}}</td>",
+											"            <td>{{roomStay.departureDate}}</td>",
+											"            <td>{{roomStay.guestCounts.adults}}</td>",
+											"                       <td>{{roomStay.guestCounts.children}}</td>",
+											"                                  <td>{{roomStay.total.amountBeforeTax}}</td>",
+											"                                             <td>{{roomStay.total.amountAfterTax}}</td>",
+											"                                                        <td>{{roomStay.guarantee.guaranteeCode}}</td>",
+											"                                             <td>{{roomStay.guarantee.guaranteeType}}</td>",
+											"        </tr>",
+											"     ",
+											"    {{/each}}",
+											"</table>",
+											"",
+											"",
+											" ",
+											"",
+											"",
+											" ",
+											"",
+											"`;",
+											"",
+											"function constructVisualizerPayload() {",
+											"    return {response: pm.response.json()}",
+											"}",
+											"",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{DistributionToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8",
+										"type": "text"
+									},
+									{
+										"key": "x-channelCode",
+										"value": "{{ChannelCode}}",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "x-request-id",
+										"value": "{{$randomUUID}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"reservations\": [\n        {\n            \"roomStay\": {\n                \"arrivalDate\": \"{{currentdateplus10}}\",\n                \"departureDate\": \"{{currentdateplus12}}\",\n                \"roomRates\": [\n                    {\n                        \"guestCounts\": {\n                            \"adults\": 1\n                        },\n                        \"roomType\": \"{{RoomType}}\",\n                        \"ratePlanCode\": \"{{RatePlanCode}}\",\n                        \"numberOfUnits\": 1,\n                        \"start\": \"{{currentdateplus10}}\",\n                        \"end\": \"{{currentdateplus11}}\"\n                    }\n                ],\n                \"guarantee\": {\n                    \"guaranteeType\": \"5\"\n                },\n                \"printRate\": true\n            },\n            \"reservationGuests\": [\n                {\n                    \"profileInfo\": {\n                        \"profile\": {\n                            \"customer\": {\n                                \"personName\": [\n                                    {\n                                        \"surname\": \"{{$randomLastName}}\",\n                                        \"givenName\": \"{{$randomFirstName}}\",\n                                        \"nameTitle\": \"Mr and Mrs\",\n                                        \"nameType\": \"Primary\",\n                                        \"email\": \"{{$randomEmail}}\",\n                                        \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n                                        \"address\": {\n                                            \"addressLine\": [\n                                                \"{{$randomStreetAddress}}\"\n                                            ],\n                                            \"cityName\": \"{{$randomCity}}\",\n                                            \"postalCode\": \"CAA-90017\",\n                                            \"country\": {\n                                                \"code\": \"US\"\n                                            },\n                                            \"state\": \"CA\"\n                                        }\n                                    }\n                                ],\n                                \"language\": \"en-us\"\n                            },\n                            \"profileType\": \"Guest\"\n                        }\n                    },\n                    \"primary\": true\n                }\n            ],\n            \"reservationPaymentMethods\": [\n                {\n                    \"paymentMethod\": \"5\",\n                    \"folioView\": \"1\",\n                    \"paymentCard\": {\n                        \"cardType\": \"AX\",\n                        \"cardNumber\": \"371449635398431\",\n                        \"expirationDate\": \"03/29\",\n                        \"cardHolderName\": \"SomeChannel VirtualCard\"\n                    }\n                }\n            ],\n            \"hotelCode\": \"{{HotelCode1}}\",\n            \"messageId\": \"{{$randomUUID}}\",\n            \"comments\": [\n                {\n                    \"commentTitle\": \"Note from Channel {{ChannelCode}}\",\n                    \"comment\": {\n                        \"text\": {\n                            \"value\": \"Channel Text note\\n1 king bed\\nNon-Smoking\\nBill guest full stay\"\n                        },\n                     \n                        \"notificationLocation\": \"RESERVATION\",\n                        \"type\": \"GEN\",\n                        \"internal\": true,\n                        \"confidential\": false,\n                        \"overrideInternal\": false\n                    }\n                }\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HostName}}/book/v1/hotels/{{HotelCode1}}/reservations",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"book",
+										"v1",
+										"hotels",
+										"{{HotelCode1}}",
+										"reservations"
+									]
+								},
+								"description": "Basic reservation guaranteed to Credit Card.\n\nProperty must assign an OPERA Cloud reservation/guarantee type to Distribution OTA standard 5."
+							},
+							"response": []
+						}
+					],
+					"description": "These examples use the Distribution oAuth token"
+				},
+				{
+					"name": "07-12. Property APIs",
+					"item": [
+						{
+							"name": "7. get Reservation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-hotelid",
+										"value": "{{HotelId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HostName}}/rsv/v1/hotels/{{HotelId}}/reservations/{{ReservationId}}?fetchInstructions=Preferences&fetchInstructions=Reservation",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"rsv",
+										"v1",
+										"hotels",
+										"{{HotelId}}",
+										"reservations",
+										"{{ReservationId}}"
+									],
+									"query": [
+										{
+											"key": "fetchInstructions",
+											"value": "ReservationPaymentMethods",
+											"disabled": true
+										},
+										{
+											"key": "fetchInstructions",
+											"value": "RoutingInstructions",
+											"disabled": true
+										},
+										{
+											"key": "fetchInstructions",
+											"value": "Preferences"
+										},
+										{
+											"key": "fetchInstructions",
+											"value": "Indicators",
+											"disabled": true
+										},
+										{
+											"key": "fetchInstructions",
+											"value": "Reservation"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "8. get Preferences",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									},
+									{
+										"key": "x-hotelid",
+										"value": "{{HotelId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HostName}}/crm/config/v1/hotels/{{HotelId}}/preferences?preferenceGroupsCodes=ROOM+FEATURES",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"crm",
+										"config",
+										"v1",
+										"hotels",
+										"{{HotelId}}",
+										"preferences"
+									],
+									"query": [
+										{
+											"key": "preferenceGroupsCodes",
+											"value": "ROOM+FEATURES"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "9. put Reservation -> add a preference",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-hotelid",
+										"value": "{{HotelId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reservations\": [\r\n        {\r\n            \"reservationIdList\": [\r\n                {\r\n                    \"type\": \"Reservation\",\r\n                    \"id\": \"{{ReservationId}}\"\r\n                }\r\n            ],\r\n            \"preferenceCollection\": [\r\n                {\r\n                    \"preference\": [\r\n                        {\r\n                            \"preferenceValue\": \"AWAY\",\r\n                            \"hotels\": \"{{HotelId}}\",\r\n                            \"global\": false\r\n                        }\r\n                    ],\r\n                    \"preferenceType\": \"ROOM FEATURES\"\r\n                }\r\n            ],\r\n            \"hotelId\": \"{{HotelId}}\",\r\n            \"customReference\": \"\",\r\n            \"preRegistered\": false,\r\n            \"allowMobileCheckout\": false\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HostName}}/rsv/v1/hotels/{{HotelId}}/reservations/{{ReservationId}}",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"rsv",
+										"v1",
+										"hotels",
+										"{{HotelId}}",
+										"reservations",
+										"{{ReservationId}}"
+									]
+								},
+								"description": "To update an existing reservation in OPERA by attaching Preferences."
+							},
+							"response": []
+						},
+						{
+							"name": "10. get Packages (add-ons)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-hotelid",
+										"value": "{{HotelId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HostName}}/rtp/v1/packages?sellSeparate=true&startDate=2025-05-22&endDate=2025-05-24&children=0&adults=1&fetchInstructions=Header&fetchInstructions=CalculatedPrice&fetchInstructions=Items&hotelId={{HotelId}}&includeGroup=true&ticketPostingRhythm=false",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"rtp",
+										"v1",
+										"packages"
+									],
+									"query": [
+										{
+											"key": "sellSeparate",
+											"value": "true"
+										},
+										{
+											"key": "startDate",
+											"value": "2025-05-22"
+										},
+										{
+											"key": "endDate",
+											"value": "2025-05-24"
+										},
+										{
+											"key": "children",
+											"value": "0"
+										},
+										{
+											"key": "adults",
+											"value": "1"
+										},
+										{
+											"key": "fetchInstructions",
+											"value": "Header"
+										},
+										{
+											"key": "fetchInstructions",
+											"value": "CalculatedPrice"
+										},
+										{
+											"key": "fetchInstructions",
+											"value": "Items"
+										},
+										{
+											"key": "hotelId",
+											"value": "{{HotelId}}"
+										},
+										{
+											"key": "includeGroup",
+											"value": "true"
+										},
+										{
+											"key": "ticketPostingRhythm",
+											"value": "false"
+										}
+									]
+								},
+								"description": "Use this operation to search for available packages at a property. You can search by date range, to see what packages are available to add to a reservation for example."
+							},
+							"response": []
+						},
+						{
+							"name": "11. put Reservation -> add a package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-hotelid",
+										"value": "{{HotelId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reservations\": [\r\n        {\r\n            \"reservationIdList\": [\r\n                {\r\n                    \"type\": \"Reservation\",\r\n                    \"id\": \"{{ReservationId}}\"\r\n                }\r\n            ],\r\n            \"reservationPackages\": [\r\n                {\r\n                    \"packageHeaderType\": {\r\n                        \"primaryDetails\": {\r\n                            \"description\": \"Fruit Box in room for arrival\"\r\n                        },\r\n                        \"transactionDetails\": {\r\n                            \"allowance\": false,\r\n                            \"currency\": \"USD\",\r\n                            \"postingType\": \"D\",\r\n                            \"calculationRule\": \"F\"\r\n                        },\r\n                        \"postingAttributes\": {\r\n                            \"addToRate\": false,\r\n                            \"printSeparateLine\": true,\r\n                            \"postNextDay\": false,\r\n                            \"forecastNextDay\": false\r\n                        }\r\n                    },\r\n                    \"scheduleList\": [\r\n                        {\r\n                            \"consumptionDate\": \"2023-07-20\",\r\n                            \"unitPrice\": \"0\",\r\n                            \"unitAllowance\": \"0\",\r\n                            \"reservationDate\": \"2023-07-20\",\r\n                            \"originalUnitPrice\": \"0\",\r\n                            \"originalUnitAllowance\": \"0\"\r\n                        },\r\n                        {\r\n                            \"consumptionDate\": \"2023-07-19\",\r\n                            \"unitPrice\": \"0\",\r\n                            \"unitAllowance\": \"0\",\r\n                            \"reservationDate\": \"2023-07-19\",\r\n                            \"originalUnitPrice\": \"0\",\r\n                            \"originalUnitAllowance\": \"0\"\r\n                        },\r\n                        {\r\n                            \"consumptionDate\": \"2023-07-18\",\r\n                            \"unitPrice\": \"0\",\r\n                            \"unitAllowance\": \"0\",\r\n                            \"reservationDate\": \"2023-07-18\",\r\n                            \"originalUnitPrice\": \"0\",\r\n                            \"originalUnitAllowance\": \"0\"\r\n                        },\r\n                        {\r\n                            \"consumptionDate\": \"2023-07-17\",\r\n                            \"unitPrice\": \"0\",\r\n                            \"unitAllowance\": \"0\",\r\n                            \"reservationDate\": \"2023-07-17\",\r\n                            \"originalUnitPrice\": \"0\",\r\n                            \"originalUnitAllowance\": \"0\"\r\n                        },\r\n                        {\r\n                            \"consumptionDate\": \"2023-07-16\",\r\n                            \"unitPrice\": \"0\",\r\n                            \"unitAllowance\": \"0\",\r\n                            \"reservationDate\": \"2023-07-16\",\r\n                            \"originalUnitPrice\": \"0\",\r\n                            \"originalUnitAllowance\": \"0\"\r\n                        }\r\n                    ],\r\n                    \"consumptionDetails\": {\r\n                        \"defaultQuantity\": \"1\",\r\n                        \"totalQuantity\": \"1\"\r\n                    },\r\n                    \"packageCode\": \"FRUITBOX\",\r\n                    \"startDate\": \"2023-07-16\",\r\n                    \"endDate\": \"2023-07-21\"\r\n                }\r\n            ],\r\n            \"overrideInstructions\": [],\r\n            \"hotelId\": \"{{HotelId}}\",\r\n            \"customReference\": \"\",\r\n            \"preRegistered\": false,\r\n            \"allowMobileCheckout\": false\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HostName}}/rsv/v1/hotels/{{HotelId}}/reservations/{{ReservationId}}",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"rsv",
+										"v1",
+										"hotels",
+										"{{HotelId}}",
+										"reservations",
+										"{{ReservationId}}"
+									]
+								},
+								"description": "To update an existing reservation in OPERA by attaching packages, such as breakfast, chocolates etc."
+							},
+							"response": []
+						},
+						{
+							"name": "12. Pre-register a Reservation and update the arrival time",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-hotelid",
+										"value": "{{HotelId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-app-key",
+										"value": "{{AppKey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reservation\": {\r\n        \"reservationId\": {\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"preCheckInDetails\": {\r\n            \"arrival\": {\r\n                \"arrivalTime\": \"2022-07-22 14:05:00.0\"\r\n            }\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HostName}}/rsv/v1/hotels/{{HotelId}}/reservations/{{ReservationId}}/preCheckIn",
+									"host": [
+										"{{HostName}}"
+									],
+									"path": [
+										"rsv",
+										"v1",
+										"hotels",
+										"{{HotelId}}",
+										"reservations",
+										"{{ReservationId}}",
+										"preCheckIn"
+									]
+								},
+								"description": "Use this operation to pre-register reservaiton in OPERA Cloud by adding the guests expected arrival time."
+							},
+							"response": []
+						}
+					],
+					"description": "These examples use the Property oAuth token"
+				}
+			]
 		}
 	]
 }
