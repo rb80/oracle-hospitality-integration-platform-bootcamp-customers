@@ -2546,7 +2546,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"criteria\": {\n        \"hotelId\": \"{{HotelId}}\",\n        \"reservationId\": {\n            \"type\": \"Reservation\",\n            \"id\": \"{{ReservationId}}\"\n        },\n        \"refreshFolio\": true,\n        \"retrievePostingsForRoomRouting\": false,\n        \"folio\": {\n            \"guestInfo\": {\n                \"profileIdList\": []\n            },\n            \"payeeInfo\": {\n                \"payeeId\": {\n                    \"type\": \"Profile\",\n                    \"id\": \"{{CompanyId}}\"\n                },\n                \"payeeAddress\": {\n                    \"address\": {\n                        \"addressLine\": [\n                            null\n                        ]\n                    }\n                }\n            },\n            \"aRNumber\": \"{{CompanyAccountNo}}\",\n            \"instructions\": [\n                {\n                    \"duration\": {\n                        \"daily\": false,\n                        \"sunday\": true,\n                        \"monday\": true,\n                        \"tuesday\": true,\n                        \"wednesday\": true,\n                        \"thursday\": true,\n                        \"friday\": true,\n                        \"saturday\": true\n                    },\n                    \"billingInstructions\": [\n                        {\n                            \"billingCode\": \"{{CompanyRoutingCode}}\"\n                        }\n                    ],\n                    \"limitUsed\": \"0\"\n                }\n            ],\n            \"folioWindowNo\": \"2\",\n            \"paymentMethod\": \"INV\"\n        }\n    }\n}",
+							"raw": "{\n    \"criteria\": {\n        \"hotelId\": \"{{HotelId}}\",\n        \"reservationId\": {\n            \"type\": \"Reservation\",\n            \"id\": \"{{ReservationId}}\"\n        },\n        \"refreshFolio\": true,\n        \"retrievePostingsForRoomRouting\": false,\n        \"folio\": {\n            \"guestInfo\": {\n                \"profileIdList\": []\n            },\n            \"payeeInfo\": {\n                \"payeeId\": {\n                    \"type\": \"Profile\",\n                    \"id\": \"{{CompanyId}}\"\n                },\n                \"payeeAddress\": {\n                    \"address\": {\n                        \"addressLine\": [\n                            null\n                        ]\n                    }\n                }\n            },\n            \"aRNumber\": \"{{CompanyAccountNo}}\",\n            \"instructions\": [\n                {\n                    \"duration\": {\n                        \"daily\": false,\n                        \"sunday\": true,\n                        \"monday\": true,\n                        \"tuesday\": true,\n                        \"wednesday\": true,\n                        \"thursday\": true,\n                        \"friday\": true,\n                        \"saturday\": true\n                    },\n                    \"billingInstructions\": [\n                        {\n                            \"billingCode\": \"{{CompanyRoutingCode}}\"\n                        }\n                    ],\n                    \"limitUsed\": \"0\"\n                }\n            ],\n            \"folioWindowNo\": \"2\",\n            \"paymentMethod\": \"{{CompanyPaymentMethod}}\"\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2930,7 +2930,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"criteria\": {\n        \"hotelId\": \"{{HotelId}}\",\n        \"reservationId\": {\n            \"type\": \"Reservation\",\n            \"id\": \"{{ReservationId}}\"\n        },\n        \"refreshFolio\": true,\n        \"retrievePostingsForRoomRouting\": false,\n        \"folio\": {\n            \"guestInfo\": {\n                \"profileIdList\": []\n            },\n            \"payeeInfo\": {\n                \"payeeId\": {\n                    \"type\": \"Profile\",\n                    \"id\": \"{{TravelAgentProfileId}}\"\n                },\n                \"payeeAddress\": {\n                    \"address\": {\n                        \"addressLine\": [\n                            null\n                        ]\n                    }\n                }\n            },\n            \"instructions\": [\n                {\n                    \"duration\": {\n                        \"daily\": false,\n                        \"sunday\": true,\n                        \"monday\": true,\n                        \"tuesday\": true,\n                        \"wednesday\": true,\n                        \"thursday\": true,\n                        \"friday\": true,\n                        \"saturday\": true\n                    },\n                    \"billingInstructions\": [\n                        {\n                            \"billingCode\": \"{{TravelAgentRoutingCode}}\"\n                        }\n                    ],\n                    \"limitUsed\": \"0\"\n                }\n            ],\n            \"folioWindowNo\": \"3\",\n            \"paymentMethod\": \"INV\"\n        }\n    }\n}",
+							"raw": "{\n    \"criteria\": {\n        \"hotelId\": \"{{HotelId}}\",\n        \"reservationId\": {\n            \"type\": \"Reservation\",\n            \"id\": \"{{ReservationId}}\"\n        },\n        \"refreshFolio\": true,\n        \"retrievePostingsForRoomRouting\": false,\n        \"folio\": {\n            \"guestInfo\": {\n                \"profileIdList\": []\n            },\n            \"payeeInfo\": {\n                \"payeeId\": {\n                    \"type\": \"Profile\",\n                    \"id\": \"{{TravelAgentProfileId}}\"\n                },\n                \"payeeAddress\": {\n                    \"address\": {\n                        \"addressLine\": [\n                            null\n                        ]\n                    }\n                }\n            },\n            \"instructions\": [\n                {\n                    \"duration\": {\n                        \"daily\": false,\n                        \"sunday\": true,\n                        \"monday\": true,\n                        \"tuesday\": true,\n                        \"wednesday\": true,\n                        \"thursday\": true,\n                        \"friday\": true,\n                        \"saturday\": true\n                    },\n                    \"billingInstructions\": [\n                        {\n                            \"billingCode\": \"{{TravelAgentRoutingCode}}\"\n                        }\n                    ],\n                    \"limitUsed\": \"0\"\n                }\n            ],\n            \"folioWindowNo\": \"3\",\n            \"paymentMethod\": \"{{TravelAgentPaymentMethod}}\"\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3375,7 +3375,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"reservationId\": {\n        \"type\": \"Reservation\",\n        \"id\": \"{{ReservationId}}\"\n    },\n    \"reservationPaymentMethods\": [\n        {\n            \"paymentCard\": {\n                \"cardType\": \"Va\",\n                \"cardNumber\": \"4012188119853892\",\n                \"cardNumberMasked\": \"XXXXXXXXXXXX1881\",\n                \"expirationDate\": \"2026-12-31\",\n                \"expirationDateExpired\": false,\n                \"cardHolderName\": \"Charlie\",\n                \"cardOrToken\": \"Token\",\n                \"citId\": \"654321ABC1234581\"\n            },\n            \"emailFolioInfo\": {\n                \"email\": {\n                    \"emailAddress\": \"{{emailAddress}}\"\n                },\n                \"emailFolio\": true\n            },\n            \"authorizationRule\": {\n                \"code\": \"2\",\n                \"amount\": {\n                    \"amount\": \"50\",\n                    \"currencyCode\": \"{{CurrencyCode}}\"\n                }\n            },\n            \"paymentMethod\": \"VA\",\n            \"folioView\": 1\n        }\n    ],\n    \"hotelId\": \"{{HotelId}}\"\n}",
+							"raw": "{\n    \"reservationId\": {\n        \"type\": \"Reservation\",\n        \"id\": \"{{ReservationId}}\"\n    },\n    \"reservationPaymentMethods\": [\n        {\n            \"paymentCard\": {\n                \"cardType\": \"Va\",\n                \"cardNumber\": \"4012188119853892\",\n                \"cardNumberMasked\": \"XXXXXXXXXXXX1881\",\n                \"expirationDate\": \"2026-12-31\",\n                \"expirationDateExpired\": false,\n                \"cardHolderName\": \"Charlie\",\n                \"cardOrToken\": \"Token\",\n                \"citId\": \"654321ABC1234581\"\n            },\n            \"emailFolioInfo\": {\n                \"email\": {\n                    \"emailAddress\": \"{{EmailAddress}}\"\n                },\n                \"emailFolio\": true\n            },\n            \"authorizationRule\": {\n                \"code\": \"2\",\n                \"amount\": {\n                    \"amount\": \"50\",\n                    \"currencyCode\": \"{{CurrencyCode}}\"\n                }\n            },\n            \"paymentMethod\": \"VA\",\n            \"folioView\": 1\n        }\n    ],\n    \"hotelId\": \"{{HotelId}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3434,7 +3434,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"reservationId\": {\n        \"type\": \"Reservation\",\n        \"id\": \"{{ReservationId}}\"\n    },\n    \"reservationPaymentMethods\": [\n        {\n            \"paymentCard\": {\n                \"cardType\": \"Va\",\n                \"cardNumber\": \"4111111111111111\",\n                \"expirationDate\": \"2025-03-31\",\n                \"expirationDateExpired\": false,\n                \"cardHolderName\": \"Charlie\",\n                \"processing\": \"Manual\",\n                \"swiped\": false,\n                \"cardOrToken\": \"CardNumber\"\n            },\n            \"emailFolioInfo\": {\n                \"email\": {\n                    \"emailAddress\": \"{{emailAddress}}\"\n                },\n                \"emailFolio\": true\n            },\n            \"authorizationRule\": {\n                \"code\": \"2\",\n                \"amount\": {\n                    \"amount\": \"50\",\n                    \"currencyCode\": \"{{CurrencyCode}\"\n                }\n            },\n            \"paymentMethod\": \"VA\",\n            \"folioView\": 1\n        }\n    ],\n    \"hotelId\": \"{{HotelId}}\"\n}",
+							"raw": "{\n    \"reservationId\": {\n        \"type\": \"Reservation\",\n        \"id\": \"{{ReservationId}}\"\n    },\n    \"reservationPaymentMethods\": [\n        {\n            \"paymentCard\": {\n                \"cardType\": \"Va\",\n                \"cardNumber\": \"4111111111111111\",\n                \"expirationDate\": \"2025-03-31\",\n                \"expirationDateExpired\": false,\n                \"cardHolderName\": \"Charlie\",\n                \"processing\": \"Manual\",\n                \"swiped\": false,\n                \"cardOrToken\": \"CardNumber\"\n            },\n            \"emailFolioInfo\": {\n                \"email\": {\n                    \"emailAddress\": \"{{EmailAddress}}\"\n                },\n                \"emailFolio\": true\n            },\n            \"authorizationRule\": {\n                \"code\": \"2\",\n                \"amount\": {\n                    \"amount\": \"50\",\n                    \"currencyCode\": \"{{CurrencyCode}\"\n                }\n            },\n            \"paymentMethod\": \"VA\",\n            \"folioView\": 1\n        }\n    ],\n    \"hotelId\": \"{{HotelId}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4054,118 +4054,7 @@
 					"response": []
 				},
 				{
-					"name": "22.. Check-In - getKeyOption",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "x-app-key",
-								"value": "{{AppKey}}",
-								"type": "text"
-							},
-							{
-								"key": "x-hotelId",
-								"value": "{{HotelId}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HostName}}/lov/v1/listOfValues/hotels/{{HotelId}}/keyOptions",
-							"host": [
-								"{{HostName}}"
-							],
-							"path": [
-								"lov",
-								"v1",
-								"listOfValues",
-								"hotels",
-								"{{HotelId}}",
-								"keyOptions"
-							]
-						},
-						"description": "This operation will only be available if the property has a valid intergration to a doorlocking system."
-					},
-					"response": []
-				},
-				{
-					"name": "22a. Check-In - getkeyType&encoder",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "x-app-key",
-								"value": "{{AppKey}}",
-								"type": "text"
-							},
-							{
-								"key": "x-hotelId",
-								"value": "{{HotelId}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HostName}}/fof/v1/hotels/{{HotelId}}/keyInterfaces",
-							"host": [
-								"{{HostName}}"
-							],
-							"path": [
-								"fof",
-								"v1",
-								"hotels",
-								"{{HotelId}}",
-								"keyInterfaces"
-							]
-						},
-						"description": "This operation will only be available if the property has a valid intergration to a doorlocking system."
-					},
-					"response": []
-				},
-				{
-					"name": "22b. Checkin- Create Room Key",
+					"name": "22. Checkin- Create Room Key",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -4987,7 +4876,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HostName}}/fof/config/v1/transactionCodes?hotelIds={{HotelId}}&includeInactive=false&transactionSubgroupsCodes=FOD",
+							"raw": "{{HostName}}/fof/config/v1/transactionCodes?hotelIds={{HotelId}}&includeInactive=false",
 							"host": [
 								"{{HostName}}"
 							],
@@ -5008,7 +4897,8 @@
 								},
 								{
 									"key": "transactionSubgroupsCodes",
-									"value": "FOD"
+									"value": "FOD",
+									"disabled": true
 								}
 							]
 						}
@@ -5600,69 +5490,7 @@
 					"response": []
 				},
 				{
-					"name": "35. getFolioTypes",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "x-app-key",
-								"value": "{{AppKey}}",
-								"type": "text"
-							},
-							{
-								"key": "x-hotelid",
-								"value": "{{HotelId}}",
-								"type": "text"
-							},
-							{
-								"key": "logLevel",
-								"value": "ALL",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HostName}}/lov/v1/listOfValues/hotels/{{HotelId}}/folioTypes",
-							"host": [
-								"{{HostName}}"
-							],
-							"path": [
-								"lov",
-								"v1",
-								"listOfValues",
-								"hotels",
-								"{{HotelId}}",
-								"folioTypes"
-							]
-						},
-						"description": "In the response, you will see all available options you can then pass in a new request, to find the details for that subject.\r\nEG name = ProfileIdCountries.  Now you can post the request - {{HostName}}/lov/v1/listOfValues/ProfileIdCountries\r\n\r\nYou will also see in the response of this request if the \"name\" has parameters than can be passed in the request too, and if they are mandatory or not."
-					},
-					"response": []
-				},
-				{
-					"name": "35a. Checkout - Email copy of Invoice",
+					"name": "35. Checkout - Email copy of Invoice",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -5695,7 +5523,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"folioInfo\": {\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"reservationId\": {\r\n            \"id\": \"{{ReservationId}}\",\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"folioWindowNo\": \"1\",\r\n        \"folioType\": \"{{FolioType}}\",\r\n        \"folioDate\": \"{{Currentdate}}\"\r\n    },\r\n    \"emailRecipients\": [\r\n        {\r\n            \"emailAddress\": \"{{emailAddress}}\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"folioInfo\": {\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"reservationId\": {\r\n            \"id\": \"{{ReservationId}}\",\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"folioWindowNo\": \"1\",\r\n        \"folioDate\": \"{{Currentdate}}\"\r\n    },\r\n    \"emailRecipients\": [\r\n        {\r\n            \"emailAddress\": \"{{EmailAddress}}\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5720,7 +5548,7 @@
 					"response": []
 				},
 				{
-					"name": "35b. Checkout - Get Copy of Invoice",
+					"name": "35a. Checkout - Get Copy of Invoice",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},

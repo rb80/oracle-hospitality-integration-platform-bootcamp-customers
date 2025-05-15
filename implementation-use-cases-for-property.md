@@ -234,7 +234,6 @@ This API is useful for many Kiosk Partners who want to save time to Pre Authoriz
 2. Pre Authorize card. Make sure the `terminalId` value matches the terminalId in the `logo` value of the response to getHotelInterface (step 1). After execution, make sure the following values are inserted into Environment variables:
    1. `cardId`
    2. `approvalCode`
-   3. `vendorTranId` Kindly note that there may be a space after the last digit. Do not include this in your environment.
 3. Check whether PreAuthorization was successful with the fetchAuthorizationHistory API
 
 ## 18-Fetch Available Hotel Rooms
@@ -281,15 +280,15 @@ Checkin the guest using this API.
 
 ## 22-Create Room Key
 
-1. Fetch the key options and insert these values as needed in 22b
-2. This API is to fetch the key encoder id which you need for 22b. For sandbox it is default value which is already inserted into 22b. There are no physical encoders configured and therefore this API will not return any response for Sandbox
-3. Creating a Key 22b. KeyType by default should be `New`
+This is for illustration purposes, because it relies upon a key card vendor being integrated into your environment.
+
+1. Creating a Key. KeyType by default should be `New`
 
 ## 23-Create a Service Request OPTIONAL
 
 1. Fetch Service request codes
 2. Create a Service request to provide towel by Housekeeping department. Ensure you change the tag `openDate` within the payload
-3. Fetch the Service Request Codes applied to the reservation to see whether it was successfully inserted
+3. Fetch the Service Request Codes applied to the reservation to see whether it was successfully inserted.  *Note* that due to a known bug this returns all service requests.  Look through the response body to check that the service request created in step 1 exists in the response.
 
 ## 24-Set Wake up Call OPTIONAL
 
@@ -365,8 +364,6 @@ Use this API to post a checkout.
 
 Send a copy of the invoice to email.
 
-1. getFolioTypes.  Use this API to fetch the folio type configured for executing the postEmailFolioReport API
+1. Send a copy of the invoice to email.  Optionally, change the `emailAddress`
 
-2. Send a copy of the invoice to email.  Optionally, change the `emailAddress`
-
-3. Fetch a copy of the invoice in Base64 format. Use any public website to convert Base64 into pdf to view it, for example [Base64 Guru](https://base64.guru/converter/decode/pdf).
+2. Fetch a copy of the invoice in Base64 format. Use any public website to convert Base64 into pdf to view it, for example [Base64 Guru](https://base64.guru/converter/decode/pdf).
