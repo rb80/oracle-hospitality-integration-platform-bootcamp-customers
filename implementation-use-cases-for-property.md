@@ -105,7 +105,7 @@ Kindly note that there are test scripts which take Company Profile Id and insert
 This API is to create an Account Receivable Number (AR Number) to the Company Profile created previously. This is required later if you want to check out the Opera Folio Window to City Ledger (Direct Billing).
 
 1. Account Receivable account types (AR Types) enable you to categorize AR accounts. The account type selected in each AR Account is used for filtering in both the application and also on reports, such as when generating an AR aging report subtotaled by account type. Account types also determine the stationery templates to use when generating statements and reminder letters for each AR account. Fetch AR types which is required to create Company AR account and set environment variable `CompanyArAccountType`
-2. Create Company AR Account. Create your own AR account number in the format `AAAA<nnn>` where `<nnn>` are three digits.  
+2. Create Company AR Account. Create your own AR account number in the format `<nnn>` where `<nnn>` are three digits.  
 3. Copy `accountNo` from 4a and insert into query parameter. Use getProfile API to check all of the above values are responded correctly. Copy `accountNo` into `CompanyAccountNo` and `accountId` into `CompanyAccountId`.
 
 ## 5-Create Travel Agent Profile OPTIONAL
