@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "6c3ae9b9-1db3-4620-8353-026c7cfb178f",
+		"_postman_id": "3b09d8b9-f982-4187-92ad-41ab21dfe68b",
 		"name": "Bootcamp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "15729853",
-		"_collection_link": "https://hospitalityapis.postman.co/workspace/Team-Workspace~f6e529a2-8cdb-43d1-8526-1aa5d61f48e4/collection/15729853-6c3ae9b9-1db3-4620-8353-026c7cfb178f?action=share&source=collection_link&creator=15729853"
+		"_exporter_id": "44991951",
+		"_collection_link": "https://oracle-1.postman.co/workspace/Team-Workspace~12c88cb4-7de8-48d5-8b0c-a726d40fc7fc/collection/44991951-3b09d8b9-f982-4187-92ad-41ab21dfe68b?action=share&source=collection_link&creator=44991951"
 	},
 	"item": [
 		{
@@ -5958,7 +5958,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "These operations are for obtaining an oAuth token for calling Property APIs. Ensure to choose the correct call, based upon whether the environment is on SSD using Resource Owner credentials or OCIM using Client Credentials.\n\nThe getBusinessDate operation is used to determine which day the hotel is on, and to set environment variables such as currentdateplusX."
 				},
 				{
 					"name": "01-05. Distribution APIs",
@@ -6039,9 +6040,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{HostName}}/hdpba/oauth2/v1/token",
+									"raw": "{{DHostName}}/hdpba/oauth2/v1/token",
 									"host": [
-										"{{HostName}}"
+										"{{DHostName}}"
 									],
 									"path": [
 										"hdpba",
@@ -6267,9 +6268,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{HostName}}/shop/v1/hotels?adults=2&numberOfUnits=1&chainCode={{ChainCode}}&hotelCodes={{HotelCode1}},{{HotelCode2}},{{HotelCode3}},{{HotelCode4}},{{HotelCode5}},{{HotelCode6}}&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}",
+									"raw": "{{DHostName}}/shop/v1/hotels?adults=2&numberOfUnits=1&chainCode={{ChainCode}}&hotelCodes={{HotelCode1}},{{HotelCode2}},{{HotelCode3}},{{HotelCode4}},{{HotelCode5}},{{HotelCode6}}&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}",
 									"host": [
-										"{{HostName}}"
+										"{{DHostName}}"
 									],
 									"path": [
 										"shop",
@@ -6621,9 +6622,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{HostName}}/shop/v1/hotels/{{HotelCode1}}/offers?includeAmenities=false&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}&numberOfUnits=1&adults=2",
+									"raw": "{{DHostName}}/shop/v1/hotels/{{HotelCode1}}/offers?includeAmenities=false&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}&numberOfUnits=1&adults=2",
 									"host": [
-										"{{HostName}}"
+										"{{DHostName}}"
 									],
 									"path": [
 										"shop",
@@ -6715,9 +6716,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{HostName}}/shop/v1/hotels/{{HotelCode1}}/offer?adults=1&numberOfUnits=1&ratePlanCode={{RatePlanCode}}&roomType={{RoomType}}&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}&includeAmenities=True",
+									"raw": "{{DHostName}}/shop/v1/hotels/{{HotelCode1}}/offer?adults=1&numberOfUnits=1&ratePlanCode={{RatePlanCode}}&roomType={{RoomType}}&arrivalDate={{currentdateplus10}}&departureDate={{currentdateplus13}}&includeAmenities=True",
 									"host": [
-										"{{HostName}}"
+										"{{DHostName}}"
 									],
 									"path": [
 										"shop",
@@ -6920,9 +6921,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{HostName}}/book/v1/hotels/{{HotelCode1}}/reservations",
+									"raw": "{{DHostName}}/book/v1/hotels/{{HotelCode1}}/reservations",
 									"host": [
-										"{{HostName}}"
+										"{{DHostName}}"
 									],
 									"path": [
 										"book",
@@ -6937,7 +6938,7 @@
 							"response": []
 						}
 					],
-					"description": "These examples use the Distribution oAuth token"
+					"description": "These examples use the Distribution oAuth token and call a Distribution gateway."
 				},
 				{
 					"name": "07-12. Property APIs",
@@ -7351,7 +7352,7 @@
 							"response": []
 						}
 					],
-					"description": "These examples use the Property oAuth token"
+					"description": "These examples use the Property oAuth token and call a Property gateway"
 				}
 			]
 		}
