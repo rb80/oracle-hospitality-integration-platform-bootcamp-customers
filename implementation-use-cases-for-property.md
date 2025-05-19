@@ -22,7 +22,7 @@
   - [14-Modify Reservation to update Payment Method on Window 3](#14-modify-reservation-to-update-payment-method-on-window-3)
   - [15-Convert PAN into Token](#15-convert-pan-into-token)
   - [16a-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1](#16a-modify-reservation-to-insert-credit-card-token-as-payment-method-on-window-1)
-  - [16b-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 with OPI inactive OPTIONAL](#16b-modify-reservation-to-insert-credit-card-token-as-payment-method-on-window-1-with-opi-inactive-optional)
+  - [16b-Modify Reservation to Insert Credit Card Number as Payment Method on Window 1 with OPI inactive OPTIONAL](#16b-modify-reservation-to-insert-credit-card-number-as-payment-method-on-window-1-with-opi-inactive-optional)
   - [17-Pre Authorize Credit Card](#17-pre-authorize-credit-card)
   - [18-Fetch Available Hotel Rooms](#18-fetch-available-hotel-rooms)
   - [19-Assign Inspected Vacant Rooms to Reservation](#19-assign-inspected-vacant-rooms-to-reservation)
@@ -252,7 +252,7 @@ Update an existing Payment Method using this API. Make sure you update the reque
 
 And any other value which you changed.
 
-## 16b-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 with OPI inactive OPTIONAL
+## 16b-Modify Reservation to Insert Credit Card Number as Payment Method on Window 1 with OPI inactive OPTIONAL
 
 *Note* Use this only if OPI is not active (see step 15).  This configuration will not be supported in the future.
 
