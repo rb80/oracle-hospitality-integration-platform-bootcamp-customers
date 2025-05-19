@@ -2,8 +2,7 @@
 
 - [Implementation Use Cases](#implementation-use-cases)
   - [Objective of Use Cases](#objective-of-use-cases)
-  - [0 Set Currency](#0-set-currency)
-  - [1 Get Token](#1-get-token)
+  - [1a Get Token](#1a-get-token)
     - [1b get Business Date](#1b-get-business-date)
     - [1c get Hotel](#1c-get-hotel)
   - [2 Create Guest Profile](#2-create-guest-profile)
@@ -56,11 +55,9 @@
 
 * Develop skills to optimize property data usage for efficiency and accuracy.
 
-## 0 Set Currency
 
-Before starting, set the `CurrencyCode` environment variable to reflect the currency of the hotel you're using.
 
-## 1 Get Token
+## 1a Get Token
 
 This is required to access Oracle Hospitality OPERA Cloud REST APIs.
 
