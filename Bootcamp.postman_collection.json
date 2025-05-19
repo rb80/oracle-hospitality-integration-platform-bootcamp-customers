@@ -3604,7 +3604,7 @@
 					"response": []
 				},
 				{
-					"name": "16b. Pre Arrival - Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 with OPI inactive",
+					"name": "16b. Pre Arrival - Modify Reservation to Insert Credit Card Number as Payment Method on Window 1 with OPI inactive",
 					"request": {
 						"auth": {
 							"type": "bearer",
