@@ -331,7 +331,7 @@ This is for illustration purposes, because it relies upon a key card vendor bein
 
 ## 24-Set Wake up Call
 
-Create a Wakeup call on the reservation. Ensure you change the dates within the payload
+Create a Wakeup call on the reservation.
 
 1. Check whether Wakeup call Opera Control is active
 2. Create a Wakeup call on the reservation.
