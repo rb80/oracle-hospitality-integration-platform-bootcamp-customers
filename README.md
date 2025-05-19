@@ -5,7 +5,7 @@ Materials for a bootcamp for customers on the [Oracle Hospitality Integration Pl
 1. [Agenda](bootcamp-agenda.md)
 2. [Prerequisites](prerequisites.md)
 3. [Basic Setup](basic-setup.md)
-4. [Implementation Use Cases](implementation-use-cases.md)
+4. [Implementation Use Cases](implementation-use-cases-for-property.md)
 5. [Asynchronous APIs](async.md)
 6. [Business Events](business-events.md)
 7. [R&A Data APIs](rna-data-apis.md)
