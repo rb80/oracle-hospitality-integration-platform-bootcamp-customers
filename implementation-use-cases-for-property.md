@@ -206,6 +206,7 @@ Posting a routing instruction to existing reservation where `Food` charges goes 
 
 1. Fetch the routing Codes with `getRoutingCodes` and set Environment Variable of `CompanyRoutingCode`
 2. Create Routing Instructions
+3. Check whether Routing Instructions was successful on Window 2
 
 ## 12-Modify Reservation to update Payment Method on Window 2
 
