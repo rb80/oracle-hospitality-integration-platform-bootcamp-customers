@@ -2,7 +2,9 @@
 
 - [Implementation Use Cases](#implementation-use-cases)
   - [Objective of Use Cases](#objective-of-use-cases)
-  - [1a Get Token](#1a-get-token)
+  - [1 Get Token](#1-get-token)
+    - [1a Get Token Resource Owner SSD](#1a-get-token-resource-owner-ssd)
+    - [1a Get Token Client Credentials OCIM](#1a-get-token-client-credentials-ocim)
     - [1b get Business Date](#1b-get-business-date)
     - [1c get Hotel](#1c-get-hotel)
   - [2 Create Guest Profile](#2-create-guest-profile)
@@ -57,9 +59,37 @@
 
 
 
-## 1a Get Token
+## 1 Get Token
 
-This is required to access Oracle Hospitality OPERA Cloud REST APIs.
+### 1a Get Token Resource Owner SSD
+
+To obtain a token include the following headers:
+
+* A Basic authentication header using the base64 hash of your Client ID and Client Secret in the format ClientID:ClientSecret - base64 encoded to the Basic Access Authorization standard
+* Your application key in the x-app-key header
+
+And the following body parameters:
+
+* Body parameters for obtaining your initial access token
+* `grant_type`. Required to be  `password`
+* `username` and `password` As a customer, you have 3 ways to do this. 
+  ** One is to create an integration user within OPERA Cloud UI under Role Manager, User management, Interface Users, Manage Users, New, Choose respective Organization, Interface Type=OHIP and your email address and press SAVE
+  ** Create Integration user directly in Identity Manager. Here the origanization should be I-org of the chain code
+  ** Third is same way as a Partner will do. Is you create through Identity Manager whereby appending the URL at the end by apiuser=y and a chain admin will need to approve the user in identity manager
+  For example assuming your identity manager is 
+  https://rp15-uat-ssd-ohs.oracleindustry.com/identity/
+
+  Now for requesting integration user, you have to append it like below
+  https://rp15-uat-ssd-ohs.oracleindustry.com/identity/faces/register?apiuser=y
+
+  Remember Interface id will be Username and Interface Key will be password
+
+  Once done, chain admin will need to login into Identity Manager and approve your integration request. 
+  Note above URL is only as example. Check with your administrator for correct URL. Or go into OPERA Cloud URL and press register new user which will re-direct you to identity Manager URL
+
+
+
+### 1a Get Token Client Credentials OCIM
 
 To obtain a token include the following headers:
 
