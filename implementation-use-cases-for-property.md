@@ -180,7 +180,7 @@ Non deduct reservations are not included in the availability calculations by def
 
 Group blocks and travel agent (block) allotments must also be assigned reservation types. This provides several different combinations to cover guaranteed / deduct blocks, non-guaranteed / non-deduct blocks, or non-deduct allotments with deduct reservations. Use this to set environment variable `GuaranteeCode`
 5. Fetch Payment Method.  Use this to set environment variable `PaymentMethod`. Please take a payment method of your choice. You can set as `Cash` respective code at present as in later steps will be setting it to Credit Card
-6.  Create Reservation. This API will create the Reservation. There are scripts running when you execute this API whereby the environment variable `ReservationId` is set automatically
+6. Create Reservation. This API will create the Reservation. There are scripts running when you execute this API whereby the environment variable `ReservationId` is set automatically
 7. Fetch Reservation.  Once postReservation is executed, please check whether all required details are entered correctly with this API. Ensure the value from reservationIdList type=Confirmation is copied into environment variable `Confirmationid` and also `id` from `externalReferences` into `ExternalReferences`. Also set the `emailAddress` which you set with Step 3, the variable `EmailAddress`. 
 
 ## 9-Create Multi Leg Reservation
