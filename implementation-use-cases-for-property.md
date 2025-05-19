@@ -352,12 +352,12 @@ In production, ensure you ask the customer which cashierId to use and consistent
 1. getTransactionCode
 Use this API to find the required transaction Code. Find telecommunications or similar transaction codes you'll choose to assign to Window 1.  Note down the transaction code. Make sure this transaction code is inserted into the environment variable `TransactionCode`. Kindly note that transactionCodes should be created with the `manualPost` tag set to `true`. Only these transaction codes can be used at preset to be able to post through OHIP.
 
-2. Post charges to the window 1. The amount can be of your choice. Remember in Step 13 we created Routing instructions the Food Charges are routed to window 2. Therefore make sure the transaction code you choose here is *not related* to `Food`
+1. Post charges to the window 1. The amount can be of your choice. Remember in Step 13 we created Routing instructions the Food Charges are routed to window 2. Therefore make sure the transaction code you choose here is not related to `Food`. 
 
-3. getTransactionCode
+2. getTransactionCode
 Use this API to find the required transaction Code. Find food or similar transaction codes to assign to Window 2. Overwrite the environment variable `TransactionCode` with this new transaction code. Kindly note that transactionCodes should be created with the `manualPost` tag set to `true`. Only these transaction Codes can be used at preset to be able to post through OHIP.
 
-4. Post charges to the window 2. The amount can be of your choice. Remember in Step 13 we created Routing instructions the Food Charges are routed to window 2. Therefore make sure the transaction code you choose here is related to `Food`
+1. Post charges to the window 2. The amount can be of your choice. Remember in Step 13 we created Routing instructions the Food Charges are routed to window 2. Therefore make sure the transaction code you choose here is related to `Food`
 
 ## 27-Create Advance Room Charges
 
