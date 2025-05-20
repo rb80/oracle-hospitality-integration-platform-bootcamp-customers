@@ -68,8 +68,6 @@ In this lab, you'll use your own environment.  We recommend using your UAT envir
 3. If the clientId and clientSecret are already known to you, then stop here
 4. If you don't know the clientId and clientSecret then click `Reissue` to recreate the clientSecret.  Jot this down.
 
-The Oracle team will demonstrate what it looks like for a partner to Add Environment and for a customer to approve that partner's access.
-
 ## 4. Authentication Flows (background)
 
 Oracle Hospitality APIs are protected by oAuth2.  There are two "flows" used in Oracle Hospitality APIs: Client Credentials, and Resource Owner.  These flows refer to which credentials are needed to obtain an oAuth token.
