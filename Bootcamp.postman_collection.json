@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "e802adf0-2e5e-43d3-8989-627c3bd4f9d7",
+		"_postman_id": "85b0eb52-b73e-415c-824e-5cbe79b3f7ab",
 		"name": "Bootcamp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "809897"
+		"_exporter_id": "44991951",
+		"_collection_link": "https://oracle-1.postman.co/workspace/Team-Workspace~12c88cb4-7de8-48d5-8b0c-a726d40fc7fc/collection/44991951-85b0eb52-b73e-415c-824e-5cbe79b3f7ab?action=share&source=collection_link&creator=44991951"
 	},
 	"item": [
 		{
@@ -5013,7 +5014,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"criteria\": {\r\n        \"charges\": {\r\n            \"postingQuantity\": 1,\r\n            \"usePackageAllowance\": false,\r\n            \"price\": {\r\n                \"amount\": 12,\r\n                \"currencyCode\": \"USD\"\r\n            },\r\n            \"transactionCode\": {{TransactionCode}},\r\n            \"applyRoutingInstructions\": true,\r\n            \"folioWindowNo\": \"1\"\r\n        },\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": {{ReservationId}},\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"cashierId\": {{CashierId}},\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"postIt\": false\r\n    }\r\n}",
+							"raw": "{\r\n    \"criteria\": {\r\n        \"charges\": {\r\n            \"postingQuantity\": 1,\r\n            \"usePackageAllowance\": false,\r\n            \"price\": {\r\n                \"amount\": 12,\r\n                \"currencyCode\": \"{{CurrencyCode}}\"\r\n            },\r\n            \"transactionCode\": {{TransactionCode}},\r\n            \"applyRoutingInstructions\": true,\r\n            \"folioWindowNo\": \"1\"\r\n        },\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": {{ReservationId}},\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"cashierId\": {{CashierId}},\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"postIt\": false\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5141,7 +5142,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"criteria\": {\r\n        \"charges\": {\r\n            \"postingQuantity\": 1,\r\n            \"usePackageAllowance\": false,\r\n            \"price\": {\r\n                \"amount\": 50,\r\n                \"currencyCode\": \"USD\"\r\n            },\r\n            \"transactionCode\": {{TransactionCode}},\r\n            \"applyRoutingInstructions\": true,\r\n            \"folioWindowNo\": \"2\"\r\n        },\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": {{ReservationId}},\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"cashierId\": {{CashierId}},\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"postIt\": false\r\n    }\r\n}",
+							"raw": "{\r\n    \"criteria\": {\r\n        \"charges\": {\r\n            \"postingQuantity\": 1,\r\n            \"usePackageAllowance\": false,\r\n            \"price\": {\r\n                \"amount\": 50,\r\n                \"currencyCode\": \"{{CurrencyCode}}\"\r\n            },\r\n            \"transactionCode\": {{TransactionCode}},\r\n            \"applyRoutingInstructions\": true,\r\n            \"folioWindowNo\": \"2\"\r\n        },\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": {{ReservationId}},\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"cashierId\": {{CashierId}},\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"postIt\": false\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5371,7 +5372,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"criteria\": {\r\n        \"action\": \"Billing\",\r\n        \"overrideInsufficientCC\": false,\r\n        \"applyCCSurcharge\": false,\r\n        \"vATOffset\": false,\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": \"{{ReservationId}}\",\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"paymentMethod\": {\r\n            \"paymentCard\": {\r\n                \"cardType\": \"Va\",\r\n                \"cardNumberMasked\": \"\",\r\n                \"expirationDate\": \"2029-12-01\",\r\n                \"cardId\": {\r\n                    \"id\": \"{{CardId}}\",\r\n                    \"type\": \"CreditCard\"\r\n                }\r\n            },\r\n            \"paymentMethod\": \"VA\",\r\n            \"folioView\": \"1\"\r\n        },\r\n        \"postingReference\": \"Paid by Guest\",\r\n        \"postingAmount\": {\r\n            \"amount\": \"12.00\",\r\n            \"currencyCode\": \"USD\"\r\n        },\r\n        \"cashierId\": \"{{CashierId}}\",\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"folioWindowNo\": \"1\",\r\n        \"overrideARCreditLimit\": false\r\n    }\r\n}",
+							"raw": "{\r\n    \"criteria\": {\r\n        \"action\": \"Billing\",\r\n        \"overrideInsufficientCC\": false,\r\n        \"applyCCSurcharge\": false,\r\n        \"vATOffset\": false,\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": \"{{ReservationId}}\",\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"paymentMethod\": {\r\n            \"paymentCard\": {\r\n                \"cardType\": \"Va\",\r\n                \"cardNumberMasked\": \"\",\r\n                \"expirationDate\": \"2029-12-01\",\r\n                \"cardId\": {\r\n                    \"id\": \"{{CardId}}\",\r\n                    \"type\": \"CreditCard\"\r\n                }\r\n            },\r\n            \"paymentMethod\": \"VA\",\r\n            \"folioView\": \"1\"\r\n        },\r\n        \"postingReference\": \"Paid by Guest\",\r\n        \"postingAmount\": {\r\n            \"amount\": \"12.00\",\r\n            \"currencyCode\": \"{{CurrencyCode}}\"\r\n        },\r\n        \"cashierId\": \"{{CashierId}}\",\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"folioWindowNo\": \"1\",\r\n        \"overrideARCreditLimit\": false\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5430,7 +5431,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"criteria\": {\r\n    \"overrideInsufficientCC\": false,\r\n    \"applyCCSurcharge\": false,\r\n    \"vATOffset\": false,\r\n    \"reservationId\": {\r\n      \"idContext\": \"OPERA\",\r\n      \"id\": {{ReservationId}},\r\n      \"type\": \"Reservation\"\r\n    },\r\n    \"paymentMethod\": {\r\n      \"paymentMethod\": \"{{CompanyPaymentMethod}}\"\r\n    },\r\n    \"postingReference\": \"Paid by Company\",\r\n    \"postingAmount\": {\r\n      \"amount\": \"50\",\r\n      \"currencyCode\": \"USD\"\r\n    },\r\n    \"cashierId\": \"{{CashierId}}\",\r\n    \"hotelId\": \"{{HotelId}}\",\r\n    \"folioWindowNo\": \"2\",\r\n    \"overrideARCreditLimit\": false\r\n  }\r\n}",
+							"raw": "{\r\n  \"criteria\": {\r\n    \"overrideInsufficientCC\": false,\r\n    \"applyCCSurcharge\": false,\r\n    \"vATOffset\": false,\r\n    \"reservationId\": {\r\n      \"idContext\": \"OPERA\",\r\n      \"id\": {{ReservationId}},\r\n      \"type\": \"Reservation\"\r\n    },\r\n    \"paymentMethod\": {\r\n      \"paymentMethod\": \"{{CompanyPaymentMethod}}\"\r\n    },\r\n    \"postingReference\": \"Paid by Company\",\r\n    \"postingAmount\": {\r\n      \"amount\": \"50\",\r\n      \"currencyCode\": \"{{CurrencyCode}}\"\r\n    },\r\n    \"cashierId\": \"{{CashierId}}\",\r\n    \"hotelId\": \"{{HotelId}}\",\r\n    \"folioWindowNo\": \"2\",\r\n    \"overrideARCreditLimit\": false\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5489,7 +5490,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"criteria\": {\r\n    \"overrideInsufficientCC\": false,\r\n    \"applyCCSurcharge\": false,\r\n    \"vATOffset\": false,\r\n    \"reservationId\": {\r\n      \"idContext\": \"OPERA\",\r\n      \"id\": {{ReservationId}},\r\n      \"type\": \"Reservation\"\r\n    },\r\n    \"paymentMethod\": {\r\n      \"paymentMethod\": \"{{TravelAgentPaymentMethod}}\"\r\n    },\r\n    \"postingReference\": \"Paid by Travel Agent\",\r\n    \"postingAmount\": {\r\n      \"amount\": \"250\",\r\n      \"currencyCode\": \"USD\"\r\n    },\r\n    \"cashierId\": \"{{CashierId}}\",\r\n    \"hotelId\": \"{{HotelId}}\",\r\n    \"folioWindowNo\": \"3\",\r\n    \"overrideARCreditLimit\": false\r\n  }\r\n}",
+							"raw": "{\r\n  \"criteria\": {\r\n    \"overrideInsufficientCC\": false,\r\n    \"applyCCSurcharge\": false,\r\n    \"vATOffset\": false,\r\n    \"reservationId\": {\r\n      \"idContext\": \"OPERA\",\r\n      \"id\": {{ReservationId}},\r\n      \"type\": \"Reservation\"\r\n    },\r\n    \"paymentMethod\": {\r\n      \"paymentMethod\": \"{{TravelAgentPaymentMethod}}\"\r\n    },\r\n    \"postingReference\": \"Paid by Travel Agent\",\r\n    \"postingAmount\": {\r\n      \"amount\": \"250\",\r\n      \"currencyCode\": \"{{CurrencyCode}}\"\r\n    },\r\n    \"cashierId\": \"{{CashierId}}\",\r\n    \"hotelId\": \"{{HotelId}}\",\r\n    \"folioWindowNo\": \"3\",\r\n    \"overrideARCreditLimit\": false\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
