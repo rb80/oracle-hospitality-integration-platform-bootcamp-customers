@@ -6,7 +6,7 @@
   - [1 Setting up Postman](#1-setting-up-postman)
     - [Familiarizing yourself with using Postman for GraphQL](#familiarizing-yourself-with-using-postman-for-graphql)
     - [Responses in Postman](#responses-in-postman)
-  - [2 Setting up the Client](#2-setting-up-the-client)
+  - [2 Setting up the Client (Optional Advanced Lab)](#2-setting-up-the-client-optional-advanced-lab)
     - [Pre-Requisites](#pre-requisites)
     - [Installing the Client](#installing-the-client)
     - [Folder Structure for the Client](#folder-structure-for-the-client)
@@ -74,7 +74,7 @@ The blue section marked `2` is the filter.  This may be empty, but you can craft
 
 You can visualize the multipart response in the `Raw` tab.  For ease of visualizing the results, a script pieces together the chunks into one JSON object; this can be seen in the `Visualization` tab.
 
-## 2 Setting up the Client
+## 2 Setting up the Client (Optional Advanced Lab)
 
 Note that the [Node JS client](https://github.com/luisweir/rna-data-api-client) is for demonstration purposes only and is not meant to serve as a reference implementation.
 
