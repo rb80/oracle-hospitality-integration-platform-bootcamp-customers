@@ -25,7 +25,17 @@
 											"var uuid = require('uuid');\r",
 											"var myUUID = uuid.v4();\r",
 											"pm.environment.set(\"MyGUID\", myUUID);\r",
-											"pm.environment.set(\"HashedAppKey\", CryptoJS.SHA256(pm.environment.get(\"AppKey\")).toString());"
+											"(async () => {\r",
+											"    const encoder = new TextEncoder();\r",
+											"    const data = encoder.encode(pm.environment.get(\"AppKey\"));\r",
+											"    \r",
+											"    const hashBuffer = await crypto.subtle.digest(\"SHA-256\", data);\r",
+											"    const hashArray = Array.from(new Uint8Array(hashBuffer));\r",
+											"    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');\r",
+											"    \r",
+											"    pm.environment.set(\"HashedAppKey\", hashHex);\r",
+											"})();\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -118,10 +128,27 @@
 											"var uuid = require('uuid');\r",
 											"var myUUID = uuid.v4();\r",
 											"pm.environment.set(\"MyGUID\", myUUID);\r",
-											"pm.environment.set(\"HashedAppKey\", CryptoJS.SHA256(pm.environment.get(\"AppKey\")).toString());"
+											"(async () => {\r",
+											"    const encoder = new TextEncoder();\r",
+											"    const data = encoder.encode(pm.environment.get(\"AppKey\"));\r",
+											"    \r",
+											"    const hashBuffer = await crypto.subtle.digest(\"SHA-256\", data);\r",
+											"    const hashArray = Array.from(new Uint8Array(hashBuffer));\r",
+											"    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');\r",
+											"    \r",
+											"    pm.environment.set(\"HashedAppKey\", hashHex);\r",
+											"})();\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"packages": {},
+										"type": "text/javascript"
 									}
 								}
 							],
