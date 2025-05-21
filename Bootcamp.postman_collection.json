@@ -5399,6 +5399,65 @@
 					"response": []
 				},
 				{
+					"name": "29b. Checkout - Post Payment on each Window 1 with OPI inactive",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-hotelid",
+								"value": "{{HotelId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-app-key",
+								"value": "{{AppKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"criteria\": {\r\n        \"action\": \"Billing\",\r\n        \"overrideInsufficientCC\": false,\r\n        \"applyCCSurcharge\": false,\r\n        \"vATOffset\": false,\r\n        \"reservationId\": {\r\n            \"idContext\": \"OPERA\",\r\n            \"id\": \"{{ReservationId}}\",\r\n            \"type\": \"Reservation\"\r\n        },\r\n        \"paymentMethod\": {\r\n            \"paymentCard\": {\r\n                \"cardType\": \"Va\",\r\n                \"cardNumberMasked\": \"\",\r\n                \"expirationDate\": \"2029-12-01\",\r\n                \"cardId\": {\r\n                    \"id\": \"{{CardId}}\",\r\n                    \"type\": \"CreditCard\"\r\n                }\r\n            },\r\n            \"paymentMethod\": \"VA\",\r\n            \"folioView\": \"1\"\r\n        },\r\n        \"postingReference\": \"Paid by Guest\",\r\n        \"postingAmount\": {\r\n            \"amount\": \"12.00\",\r\n            \"currencyCode\": \"{{CurrencyCode}}\"\r\n        },\r\n        \"cashierId\": \"{{CashierId}}\",\r\n        \"hotelId\": \"{{HotelId}}\",\r\n        \"folioWindowNo\": \"1\",\r\n        \"overrideARCreditLimit\": false\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HostName}}/csh/v1/hotels/{{HotelId}}/reservations/{{ReservationId}}/payments",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"csh",
+								"v1",
+								"hotels",
+								"{{HotelId}}",
+								"reservations",
+								"{{ReservationId}}",
+								"payments"
+							]
+						},
+						"description": "**Only use this sample if OPI is inactive (see step 15**). **This configuration will not be supported in the future.**\n\nUse this API to post payment against the folio on each Window. There should be no balance left. Window 1 should be paid against cash."
+					},
+					"response": []
+				},
+				{
 					"name": "30. Checkout - Post Payment on each Window 2",
 					"request": {
 						"auth": {
