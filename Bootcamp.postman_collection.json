@@ -3448,6 +3448,32 @@
 				},
 				{
 					"name": "15. Check OPI Cloud Active",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Each appSetting with name OPI_CREDIT_CARD_PROCESSING has a valid value property\", function () {\r",
+									"    pm.response.json().groups.forEach(function(group) {\r",
+									"        group.appSettings.forEach(function(setting) {\r",
+									"            if (setting.name === \"OPI_CREDIT_CARD_PROCESSING\") {\r",
+									"                // Update to post in the console \"OPI is active\" if the \"value\": \"Y\" and \"OPI is not active\" if \"value\": \"N\"\r",
+									"                if (setting.value === \"Y\") {\r",
+									"                    console.log(\"OPI is active\");\r",
+									"                } else if (setting.value === \"N\") {\r",
+									"                    console.log(\"OPI is not active\");\r",
+									"                }\r",
+									"            }\r",
+									"        });\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3482,7 +3508,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "// Parse the response body\r\nvar responseBody = pm.response.json();\r\n\r\n// Find the value of the property \"name\"\r\nvar nameValue = responseBody.groups[0].appSettings[0].name;\r\n\r\n// Check the value of the property \"value\" based on the \"name\" value\r\nif (nameValue === \"OPI_CREDIT_CARD_PROCESSING\") {\r\n    var creditCardValue = responseBody.groups[0].appSettings[0].value;\r\n    console.log(\"Value of credit card processing:\", creditCardValue);\r\n} else {\r\n    console.log(\"Name value is not OPI_CREDIT_CARD_PROCESSING\");\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
