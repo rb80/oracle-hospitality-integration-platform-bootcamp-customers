@@ -74,7 +74,7 @@ Oracle Hospitality APIs are protected by oAuth2.  There are two "flows" used in 
 
 ## 5. Setting up Postman
 
-1. Download the latest Postman collections and the [Postman Environment](https://github.com/oracle/hospitality-api-docs/blob/main/postman-collections/oracle-hospitality-property.postman_environment.json) from the [Oracle Hospitality Github repository](https://github.com/oracle/hospitality-api-docs/tree/main/postman-collections)
+1. Download the latest [Property Postman Collection](https://github.com/oracle/hospitality-api-docs/blob/main/postman-collections/property/oracle-hospitality-property-workflows.postman_collection.json) from our Github repository
 2. Download the [Bootcamp Postman collection in this repository](Bootcamp.postman_collection.json)
 3. Download the [Bootcamp Postman environment in this repository](Bootcamp.postman_environment.json)
 4. Import these Postman collections and Environment into Postman
