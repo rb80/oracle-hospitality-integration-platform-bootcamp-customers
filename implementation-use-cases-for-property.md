@@ -8,22 +8,22 @@
     - [1b get Business Date](#1b-get-business-date)
     - [1c get Hotel](#1c-get-hotel)
   - [2 Create Guest Profile](#2-create-guest-profile)
-  - [3 Create Company Profile](#3-create-company-profile)
-  - [4 Create AR Account for Company Profile](#4-create-ar-account-for-company-profile)
-  - [5-Create Travel Agent Profile](#5-create-travel-agent-profile)
-  - [6 Create AR Account for Travel Agent Profile](#6-create-ar-account-for-travel-agent-profile)
+  - [3 Create Company Profile (Advanced Optional Lab)](#3-create-company-profile-advanced-optional-lab)
+  - [4 Create AR Account for Company Profile (Advanced Optional Lab)](#4-create-ar-account-for-company-profile-advanced-optional-lab)
+  - [5-Create Travel Agent Profile (Advanced Optional Lab)](#5-create-travel-agent-profile-advanced-optional-lab)
+  - [6 Create AR Account for Travel Agent Profile (Advanced Optional Lab)](#6-create-ar-account-for-travel-agent-profile-advanced-optional-lab)
   - [7-Fetch Hotel Availability](#7-fetch-hotel-availability)
   - [8-Create Reservation](#8-create-reservation)
   - [9-Create Multi Leg Reservation](#9-create-multi-leg-reservation)
   - [10-Modify Reservation Add Preference](#10-modify-reservation-add-preference)
-  - [11-Create Routing Instruction to Company on Window 2](#11-create-routing-instruction-to-company-on-window-2)
-  - [12-Modify Reservation to update Payment Method on Window 2](#12-modify-reservation-to-update-payment-method-on-window-2)
-  - [13-Create Routing Instruction to Travel Agent on Window 3](#13-create-routing-instruction-to-travel-agent-on-window-3)
-  - [14-Modify Reservation to update Payment Method on Window 3](#14-modify-reservation-to-update-payment-method-on-window-3)
+  - [11-Create Routing Instruction to Company on Window 2 (Advanced Optional Lab)](#11-create-routing-instruction-to-company-on-window-2-advanced-optional-lab)
+  - [12-Modify Reservation to update Payment Method on Window 2 (Advanced Optional Lab)](#12-modify-reservation-to-update-payment-method-on-window-2-advanced-optional-lab)
+  - [13-Create Routing Instruction to Travel Agent on Window 3 (Advanced Optional Lab)](#13-create-routing-instruction-to-travel-agent-on-window-3-advanced-optional-lab)
+  - [14-Modify Reservation to update Payment Method on Window 3 (Advanced Optional Lab)](#14-modify-reservation-to-update-payment-method-on-window-3-advanced-optional-lab)
   - [15-Convert PAN into Token](#15-convert-pan-into-token)
-  - [16a-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1](#16a-modify-reservation-to-insert-credit-card-token-as-payment-method-on-window-1)
-  - [16b-Modify Reservation to Insert Credit Card Number as Payment Method on Window 1 with OPI inactive OPTIONAL](#16b-modify-reservation-to-insert-credit-card-number-as-payment-method-on-window-1-with-opi-inactive-optional)
-  - [17-Pre Authorize Credit Card](#17-pre-authorize-credit-card)
+  - [16a-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 (Only if you have OPI Cloud Enabled)](#16a-modify-reservation-to-insert-credit-card-token-as-payment-method-on-window-1-only-if-you-have-opi-cloud-enabled)
+  - [16b-Modify Reservation to Insert Credit Card Number as Payment Method on Window 1 (Only if you DO NOT have OPI Cloud enabled)](#16b-modify-reservation-to-insert-credit-card-number-as-payment-method-on-window-1-only-if-you-do-not-have-opi-cloud-enabled)
+  - [17-Pre Authorize Credit Card (Only if you have OPI Cloud Enabled)](#17-pre-authorize-credit-card-only-if-you-have-opi-cloud-enabled)
   - [18-Fetch Available Hotel Rooms](#18-fetch-available-hotel-rooms)
   - [19-Assign Inspected Vacant Rooms to Reservation](#19-assign-inspected-vacant-rooms-to-reservation)
   - [20-Modify Reservation to Pre-Register the Arrival](#20-modify-reservation-to-pre-register-the-arrival)
@@ -35,12 +35,12 @@
   - [26-Post Billing Charges on windows 1 and 2](#26-post-billing-charges-on-windows-1-and-2)
   - [27-Create Advance Room Charges](#27-create-advance-room-charges)
   - [28-Fetch Folio postings from each window](#28-fetch-folio-postings-from-each-window)
-  - [29-Post Payment on each Window 1](#29-post-payment-on-each-window-1)
-  - [29b-Post Payment on each Window 1 with OPI inactive OPTIONAL](#29b-post-payment-on-each-window-1-with-opi-inactive-optional)
-  - [30-Post Payment on each Window 2](#30-post-payment-on-each-window-2)
-  - [31-Post Payment on each Window 3](#31-post-payment-on-each-window-3)
+  - [29a-Post Payment on each Window 1 (Only if you have OPI Cloud Active)](#29a-post-payment-on-each-window-1-only-if-you-have-opi-cloud-active)
+  - [29b-Post Payment on each Window 1 (Only if you have OPI Cloud Inactive or to pay cash)](#29b-post-payment-on-each-window-1-only-if-you-have-opi-cloud-inactive-or-to-pay-cash)
+  - [30-Post Payment on each Window 2 (Advanced Optional Lab)](#30-post-payment-on-each-window-2-advanced-optional-lab)
+  - [31-Post Payment on each Window 3 (Advanced Optional Lab)](#31-post-payment-on-each-window-3-advanced-optional-lab)
   - [32-Modify Reservation status to Early Departure](#32-modify-reservation-status-to-early-departure)
-  - [33-Close Folio Windows 1-3](#33-close-folio-windows-1-3)
+  - [33-Close Folio Windows](#33-close-folio-windows)
   - [34-Posting CheckOut](#34-posting-checkout)
   - [35-Email Invoice](#35-email-invoice)
 
@@ -116,7 +116,7 @@ Within the payload we have included Postman default variables for First name and
 
 Also note that within the postman collection provided there are scripts inserted whereby from the POST response `ProfileId` will be automatically inserted into the Postman environment variables.
 
-## 3 Create Company Profile
+## 3 Create Company Profile (Advanced Optional Lab)
 
 Create Company Profile where by adding an AR address in the payload. This is required for successful checkout of the folio to Accounts Receivable. This is to show that Reservation can be linked to other Profile types as well. Please note that you can only attach maximum of one Company Profile.
 
@@ -125,7 +125,7 @@ Kindly note that there are test scripts which take Company Profile Id and insert
 1. Change `companyName`and `address` as required. Not mandatory to change but Postman has default variables. Do not change the address type 'AR ADDRESS' as this will be required for later tests when checking out the Reservation to City Ledger
 2. Once Company Profile is created, ensure `getProfile` API is executed so that `AR address id` is inserted into environment variables `CompanyArAddressId` and also `CompanyName`
 
-## 4 Create AR Account for Company Profile
+## 4 Create AR Account for Company Profile (Advanced Optional Lab)
 
 This API is to create an Account Receivable Number (AR Number) to the Company Profile created previously. This is required later if you want to check out the Opera Folio Window to City Ledger (Direct Billing).
 
@@ -134,7 +134,7 @@ This API is to create an Account Receivable Number (AR Number) to the Company Pr
 3. Create Company AR Account. Make sure `accountNo`tag within the payload is updated to respective code of your choice respecting the OPERA control value from previous step
 4. Copy `accountNo` from 4a and insert into query parameter. Use getProfile API to check all of the above values are responded correctly. Copy `accountNo` into `CompanyAccountNo` and `accountId` into `CompanyAccountId`.
 
-## 5-Create Travel Agent Profile
+## 5-Create Travel Agent Profile (Advanced Optional Lab)
 
 Create Travel Agent Profile with AR Address. This is to show that a Reservation can be linked to other Profile types as well.
 
@@ -146,7 +146,7 @@ Please note that you can only attach a maximum of one Travel Agent Profile. The 
    2. Copy `CompanyName` into environment variables as `TravelAgentName`.
    3. Note that there are 2 addresses in the response - make sure you insert correct Address (AR) into Environment variables.
 
-## 6 Create AR Account for Travel Agent Profile
+## 6 Create AR Account for Travel Agent Profile (Advanced Optional Lab)
 
 1. Account Receivable account types (AR Types) enable you to categorize AR accounts. The account type selected in each AR Account is used for filtering in both the application and also on reports, such as when generating an AR aging report subtotaled by account type. Account types also determine the stationery templates to use when generating statements and reminder letters for each AR account. Fetch AR types which is required to create Travel Agent AR account and set environment variable `TravelAgentArAccountType`.
 2. Fetching of the AR Account Number sequence for creating Travel Agent AR Account in next API. The AR Account format is determined from the OPERA Control `Account_Picture` under the module `Accounts_ Recievable`. For example `A` respresents Alphabet and `X ` respresents number. For example your OPERA Control is `AAAAXX` and your value would be like `ABCD12`
@@ -199,7 +199,7 @@ Pre Arrival where a preference will be added.
 2. Modify Reservation to insert the Preference Code from step 1
 3. Fetch Reservation.  Once putReservation is executed, check whether your preference has been attached on the reservation
 
-## 11-Create Routing Instruction to Company on Window 2
+## 11-Create Routing Instruction to Company on Window 2 (Advanced Optional Lab)
 
 A routing instruction is a set of rules applied to a reservation that tells Opera where and how to route charges.
 A routing code is a predefined template that contains a routing instruction. It simplifies and standardizes routing for frequent use.
@@ -210,13 +210,13 @@ Posting a routing instruction to existing reservation where `Food` charges goes 
 2. Create Routing Instructions
 3. Check whether Routing Instructions was successful on Window 2
 
-## 12-Modify Reservation to update Payment Method on Window 2
+## 12-Modify Reservation to update Payment Method on Window 2 (Advanced Optional Lab)
 
 1. To find the Payment Method use `getPaymentMethod` API. Use whichever code is configured in your environment for City Ledger or Direct Billing. Within the response payload, the relevent code should have DirectBillYN=Y.  Set this code to be the `CompanyPaymentMethod` environment variable.
 2. Modify Payment Method on Reservation.  Once Routing is done, modification is required to the existing Reservation to inform that window 2 will be paid by Direct Billing as the Payment Method. Kindly note Routing Instructions and Payment Method are 2 different APIs at present.
 3. Use fetch Reservation to check whether the modification of the Payment Method was successful on Window 2
 
-## 13-Create Routing Instruction to Travel Agent on Window 3
+## 13-Create Routing Instruction to Travel Agent on Window 3 (Advanced Optional Lab)
 
 A routing instruction is a set of rules applied to a reservation that tells Opera where and how to route charges.
 A routing code is a predefined template that contains a routing instruction. It simplifies and standardizes routing for frequent use.
@@ -227,7 +227,7 @@ Posting a routing instruction to an existing reservation where Room charges go t
 2. Create Routing Instructions on Reservation
 3. Check whether Routing Instructions was successful on Window 3
 
-## 14-Modify Reservation to update Payment Method on Window 3
+## 14-Modify Reservation to update Payment Method on Window 3 (Advanced Optional Lab)
 
 1. To find the Payment Method use `getPaymentMethod` API. Use whichever code is configured in your environment for City Ledger or Direct Billing. Within the response payload, the relevent code should have DirectBillYN=Y. Set this to be the `TravelAgentPaymentMethod` environment variable.
 2. Modify Payment Method on Reservation.  Once Routing is done, modification is required to the existing Reservation to inform that window 3 will be paid by Direct Billing as the Payment Method. Kindly note Routing Instructions and Payment Method are 2 different APIs at present.
@@ -245,7 +245,7 @@ Take any [test Credit Card numbers](https://www.paypalobjects.com/en_AU/vhelp/pa
 
 Kindly note that this environment is linked to a PSP simulator and therefore every PAN number conversion will respond with different Token numbers for same PAN number.
 
-## 16a-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1
+## 16a-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1 (Only if you have OPI Cloud Enabled)
 
 _Note_ Use this only if OPI is active (see [step 15](#15-convert-pan-into-token)).
 
@@ -257,7 +257,7 @@ Update an existing Payment Method using this API. Make sure you update the reque
 
 And any other value which you changed.
 
-## 16b-Modify Reservation to Insert Credit Card Number as Payment Method on Window 1 with OPI inactive OPTIONAL
+## 16b-Modify Reservation to Insert Credit Card Number as Payment Method on Window 1 (Only if you DO NOT have OPI Cloud enabled)
 
 _Note_ Use this only if OPI is not active (see [step 15](#15-convert-pan-into-token)).  This configuration will not be supported in the future.
 
@@ -268,7 +268,7 @@ Update an existing Payment Method using this API. Make sure you update the reque
 
 And any other value which you changed.
 
-## 17-Pre Authorize Credit Card
+## 17-Pre Authorize Credit Card (Only if you have OPI Cloud Enabled)
 
 This API is useful for many Kiosk Partners who want to save time to Pre Authorize the card prior to calling the Checkin API.
 
@@ -372,25 +372,27 @@ As we are testing and no End of Day Routine will be run, use this API to post Ro
 
 ## 28-Fetch Folio postings from each window
 
-Use this API to fetch Folios from each window. Remember there are 3 Windows which should have Charges (Balances)
+Use this API to fetch Folios from each window.
 
-## 29-Post Payment on each Window 1
+> Remember if you did the advanced labs there will 3 Windows which should have Charges (Balances)
+
+## 29a-Post Payment on each Window 1 (Only if you have OPI Cloud Active)
 
 1. Use this API to post payment against the folio on each Window. There should be no balance left. Window 1 should be paid against Credit Card.
 
-## 29b-Post Payment on each Window 1 with OPI inactive OPTIONAL
+## 29b-Post Payment on each Window 1 (Only if you have OPI Cloud Inactive or to pay cash)
 
 _Note_ Use this only if OPI is not active (see [step 15](#15-convert-pan-into-token)).  This configuration will not be supported in the future.
 
 1. Use this API to post payment against the folio on each Window. There should be no balance left. Window 1 should be paid against Cash.
 
-## 30-Post Payment on each Window 2
+## 30-Post Payment on each Window 2 (Advanced Optional Lab)
 
 Use this API to post payment against the folio on each Window. There should be no balance left
 
 1. Window 2 should be paid against the payment Method determined in step 12a, which is invoiced to Company
 
-## 31-Post Payment on each Window 3
+## 31-Post Payment on each Window 3 (Advanced Optional Lab)
 
 Use this API to post payment against the folio on each Window. There should be no balance left
 
@@ -400,13 +402,13 @@ Use this API to post payment against the folio on each Window. There should be n
 
 As we are testing and no End of Day Routine will be run, use this API to change the Reservation to be able checkout Early.
 
-## 33-Close Folio Windows 1-3
+## 33-Close Folio Windows
 
 Use this folio to settle the folio prior to checkout.
 
-_This API needs to be executed on all 3 windows separately as charges were on all these 3 windows_.
+> _This API needs to be executed on all windows where charges were made_.
 
-Make sure that you change the `folioWindow` value for each of the API calls.
+*Make sure that you change the `folioWindow` value for each of the API calls.*
 
 ## 34-Posting CheckOut
 
