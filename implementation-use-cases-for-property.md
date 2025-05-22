@@ -244,7 +244,7 @@ Posting a routing instruction to an existing reservation where Room charges go t
     ...
     "value": "N",
   ```
-   2. If OPI is not active, please:
+   2. If OPI is not active, you'll see `OPI is not active` in the Console tab at the bottom of the screen in Postman.  If so, please:
       1. Note that this configuration will not be supported in the future.
       2. Set the environment variables `CompanyPaymentMethod` and `TravelAgentPaymentMethod` to `CA`.
       3. Skip to [step 16a](#16a-modify-reservation-to-insert-credit-card-token-as-payment-method-on-window-1).
