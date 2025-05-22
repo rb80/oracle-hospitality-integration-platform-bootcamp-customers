@@ -235,15 +235,22 @@ Posting a routing instruction to an existing reservation where Room charges go t
 
 ## 15-Convert PAN into Token
 
-1. With this API, you can verify whether OPI cloud is active.  _Note_ that if you do not have OPI cloud active please:
-   1. Note that this configuration will not be supported in the future
-   2. Set the environment variables `CompanyPaymentMethod` and `TravelAgentPaymentMethod` to `CA`
-   3. Skip to step 16a
-2. Convert Primary Account Number (PAN) into Token issued by Payment Service Providers.
-This is required to updated Window 1 payment method to the payment method which belongs to guest.
-Take any [test Credit Card numbers](https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.htm) and insert into the payload within the tag `pan`.
-
-Kindly note that this environment is linked to a PSP simulator and therefore every PAN number conversion will respond with different Token numbers for same PAN number.
+1. With this API, you can verify whether OPI cloud is active.
+   1. If the response includes the following then OPI is not active.
+ ```
+    "name": "OPI_CREDIT_CARD_PROCESSING",
+    "displayName": "OPI Cloud Credit Card Processing",
+    "type": "Parameter",
+    ...
+    "value": "N",
+  ```
+   2. If OPI is not active, please:
+      1. Note that this configuration will not be supported in the future.
+      2. Set the environment variables `CompanyPaymentMethod` and `TravelAgentPaymentMethod` to `CA`.
+      3. Skip to [step 16a](#16a-modify-reservation-to-insert-credit-card-token-as-payment-method-on-window-1).
+3. If OPI is active, then convert the Primary Account Number (PAN) into Token issued by Payment Service Providers using request 15a.  This is required to updated Window 1 payment method to the payment method which belongs to guest.
+4. Take any [test Credit Card numbers](https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.htm) and insert into the payload within the tag `pan`.
+5. Note that if you receive error 401 from request 15a this means OPI is not active.
 
 ## 16a-Modify Reservation to Insert Credit Card Token as Payment Method on Window 1
 
